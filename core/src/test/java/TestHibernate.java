@@ -1,5 +1,6 @@
 import ru.dz.labs.api.domain.SubjectInfo;
 import ru.dz.labs.api.service.SubjectService;
+import ru.dz.labs.utils.HibernateUtil;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -33,5 +34,7 @@ public class TestHibernate {
             System.out.println("id : " + subject.getId() + ", name : " + subject.getName());
         }
         System.out.println("=============================");
+        if (!HibernateUtil.getSessionFactory().isClosed())
+            HibernateUtil.getSessionFactory().close();
     }
 }
