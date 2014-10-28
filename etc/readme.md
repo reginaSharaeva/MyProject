@@ -39,3 +39,8 @@
 * [FreeMarker Manual](http://freemarker.sourceforge.net/docs/)
 * [Использование macro](http://freemarker.sourceforge.net/docs/ref_directive_macro.html)
 
+## .bat файлы
+  Файлы из ./etc/bat/ положить в корневую папку Tomcat.
+  
+* `clean.bat` - очищает старые логи, рабочие файлы, собранные проекты
+* `start_tomcat.bat` - очищает и запускает Tomcat
