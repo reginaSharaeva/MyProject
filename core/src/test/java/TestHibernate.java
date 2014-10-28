@@ -15,14 +15,14 @@ public class TestHibernate {
         SubjectInfo s2 = new SubjectInfo();
         SubjectInfo s3 = new SubjectInfo();
 
-        s1.setName("spanish");
-        s2.setId(1L);
-        s2.setName("geography");
+        s1.setName("math");
+        s2.setId(33L);
+        s2.setName("lang");
 //        s3.setId(3L);
 
         SubjectService subjectService = new SubjectService();
-//        subjectService.addSubject(s1);
-//        subjectService.updateSubject(s2);
+        subjectService.addSubject(s1);
+        subjectService.updateSubject(s2);
         SubjectInfo subjectInfo = subjectService.getSubjectById(1L);
         System.out.println(String.valueOf(subjectInfo));
 //        subjectService.deleteSubject(s3);
