@@ -26,9 +26,9 @@
 
     <profiles>
         <profile>
-            <id>kamil-dev</id>
+            <id>dasha-dev</id>
             <properties>
-                <tomcatHome>C:/Java/apache-tomcat-8.0.14</tomcatHome>
+                <tomcatHome>C:/Program Files/Apache Software Foundation/Tomcat 7.0</tomcatHome>
             </properties>
         </profile>
         <profile>
