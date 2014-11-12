@@ -43,6 +43,12 @@
                 <tomcatHome>C:/Program Files/Java/apache-tomcat-8.0.14</tomcatHome>
             </properties>
         </profile>
+	<profile>
+            <id>dmitriy-dev</id>
+            <properties>
+                <tomcatHome>C:/apache-tomcat-8.0.12</tomcatHome>
+            </properties>
+        </profile>
         <profile>
             <id>private</id>
             <modules>
