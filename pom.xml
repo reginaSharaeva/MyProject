@@ -50,7 +50,6 @@
             </properties>
         </profile>
         </profile>
-	<profile>
             <id>jenya-dev</id>
             <properties>
                 <tomcatHome>C:/apache-tomcat-8.0.12</tomcatHome>
