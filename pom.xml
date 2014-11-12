@@ -32,6 +32,24 @@
             </properties>
         </profile>
         <profile>
+
+            <id>DR</id>
+            <properties>
+                <tomcatHome>C:\Users\Roman\Desktop\eclipse_luna\apache-tomcat-8.0.14</tomcatHome>
+	</profile>
+	<profile>
+            <id>rustem-dev</id>
+            <properties>
+                <tomcatHome>C:/Program Files/Java/apache-tomcat-8.0.14</tomcatHome>
+            </properties>
+        </profile>
+	<profile>
+            <id>dmitriy-dev</id>
+            <properties>
+                <tomcatHome>C:/apache-tomcat-8.0.12</tomcatHome>
+            </properties>
+        </profile>
+        <profile>
             <id>private</id>
             <modules>
                 <module>private</module>
