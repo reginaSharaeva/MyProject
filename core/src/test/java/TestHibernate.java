@@ -23,6 +23,7 @@ public class TestHibernate {
 
         SubjectService subjectService = new SubjectService();
         subjectService.addSubject(s1);
+
         subjectService.updateSubject(s2);
         SubjectInfo subjectInfo = subjectService.getSubjectById(1L);
         System.out.println(String.valueOf(subjectInfo));
