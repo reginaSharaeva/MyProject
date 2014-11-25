@@ -3,6 +3,8 @@ package ru.dz.labs.api.domain;
 import javax.persistence.*;
 
 /**
+ * Класс с информацией о предметах
+ *
  * @author Gataullin Kamil
  *         06.10.2014 1:27
  */
@@ -15,8 +17,22 @@ public class SubjectInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    /**
+     * Название предмета
+     */
     @Column(name = "name")
     private String name;
+
+    public SubjectInfo() {
+    }
+
+    public SubjectInfo(Long id) {
+        this.id = id;
+    }
+
+    public SubjectInfo(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

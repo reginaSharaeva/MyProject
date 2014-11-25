@@ -63,6 +63,20 @@
         <filter-name>hiddenHttpMethodFilter</filter-name>
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
     </filter>
+    <!-- Спринговый фильтр для поддержания открытой сессии hibernate -->
+    <filter>
+        <filter-name>hibernateFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+        <init-param>
+            <param-name>singleSession</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>sessionFactoryBeanName</param-name>
+            <param-value>sessionFactory</param-value>
+        </init-param>
+    </filter>
+
     <filter-mapping>
         <filter-name>responseInScopeFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -70,5 +84,10 @@
     <filter-mapping>
         <filter-name>hiddenHttpMethodFilter</filter-name>
         <servlet-name>main</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>
