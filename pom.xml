@@ -26,30 +26,36 @@
 
     <profiles>
         <profile>
+            <id>kamil-dev</id>
+            <properties>
+                <tomcatHome>C:/Java/apache-tomcat-8.0.14</tomcatHome>
+            </properties>
+        </profile>
+        <profile>
             <id>dasha-dev</id>
             <properties>
                 <tomcatHome>C:/Program Files/Apache Software Foundation/Tomcat 7.0</tomcatHome>
             </properties>
         </profile>
         <profile>
-
             <id>DR</id>
             <properties>
                 <tomcatHome>C:\Users\Roman\Desktop\eclipse_luna\apache-tomcat-8.0.14</tomcatHome>
-	</profile>
-	<profile>
+            </properties>
+        </profile>
+        <profile>
             <id>rustem-dev</id>
             <properties>
                 <tomcatHome>C:/Program Files/Java/apache-tomcat-8.0.14</tomcatHome>
             </properties>
         </profile>
-	<profile>
+        <profile>
             <id>dmitriy-dev</id>
             <properties>
                 <tomcatHome>C:/apache-tomcat-8.0.12</tomcatHome>
             </properties>
         </profile>
-        </profile>
+        <profile>
             <id>jenya-dev</id>
             <properties>
                 <tomcatHome>C:/apache-tomcat-8.0.12</tomcatHome>
