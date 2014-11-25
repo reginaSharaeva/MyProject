@@ -4,7 +4,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.dz.labs.api.domain.SubjectInfo;
 import ru.dz.labs.api.domain.TutorInfo;
 
 import java.util.List;

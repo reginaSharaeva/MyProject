@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0" id="WebApp_ID">
 
-    <display-name>Ulmart Public Web</display-name>
+    <display-name>Tutors Public Module</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -26,7 +26,7 @@
     <env-entry>
         <env-entry-name>logback/context-name</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>public-web</env-entry-value>
+        <env-entry-value>public</env-entry-value>
     </env-entry>
 
     <servlet>
@@ -39,6 +39,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!-- Фильтр для перекодировки в utf8 -->
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -55,14 +56,25 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
     <filter>
         <filter-name>responseInScopeFilter</filter-name>
         <filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
     </filter>
+    <filter-mapping>
+        <filter-name>responseInScopeFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <filter>
         <filter-name>hiddenHttpMethodFilter</filter-name>
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
     </filter>
+    <filter-mapping>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <servlet-name>main</servlet-name>
+    </filter-mapping>
+
     <!-- Спринговый фильтр для поддержания открытой сессии hibernate -->
     <filter>
         <filter-name>hibernateFilter</filter-name>
@@ -76,18 +88,9 @@
             <param-value>sessionFactory</param-value>
         </init-param>
     </filter>
-
-    <filter-mapping>
-        <filter-name>responseInScopeFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>hiddenHttpMethodFilter</filter-name>
-        <servlet-name>main</servlet-name>
-    </filter-mapping>
-
     <filter-mapping>
         <filter-name>hibernateFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
 </web-app>

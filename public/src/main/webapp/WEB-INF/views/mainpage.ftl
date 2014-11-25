@@ -4,14 +4,14 @@
 Привет, ${studentName}! Вот список всех твоих предметов:
 <br/><br/>
 <#list allSubjects as subject>
-    id : ${subject.id}   name : ${subject.name}
+    id : ${subject.id}   name : ${subject.name?html}
 <br/><br/>
 </#list>
 
 <h2>All tutors</h2>
 <#list allTutors as tutor>
-    id : ${tutor.id}   name : ${tutor.name}     surname : ${tutor.surname}
-    birthday : ${tutor.birthday}   cityId : ${tutor.city.id} cityAlias : ${tutor.city.alias} city: ${tutor.city.name}
+    id : ${tutor.id} name : ${tutor.name?html} surname : ${tutor.surname?html} birthday : ${tutor.birthday?string("dd.MM.yyyy")}<br/>
+    cityId : ${tutor.city.id} cityAlias : ${tutor.city.alias} city: ${tutor.city.name}<br/>
     subjects : ${tutor.subjects?has_content?string}
 <br/><br/>
 </#list>

@@ -26,7 +26,7 @@ public class TutorInfo {
     private String name;
 
     /**
-     * Фамилия репетирора
+     * Фамилия репетитора
      */
     @Column(length = 25)
     private String surname;
