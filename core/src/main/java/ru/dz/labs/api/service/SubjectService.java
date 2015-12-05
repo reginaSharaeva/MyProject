@@ -1,10 +1,10 @@
 package ru.dz.labs.api.service;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.dz.labs.api.domain.SubjectInfo;
+import ru.dz.labs.api.repository.SubjectRepository;
 
 import java.util.List;
 
@@ -16,31 +16,30 @@ import java.util.List;
 public class SubjectService {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    private SubjectRepository subjectRepository;
 
-    @SuppressWarnings("unchecked")
     @Transactional
     public List<SubjectInfo> getAllSubjects() {
-        return sessionFactory.getCurrentSession().createCriteria(SubjectInfo.class).list();
+        return subjectRepository.getAllSubjects();
     }
 
     @Transactional
     public void addSubject(SubjectInfo subject) {
-        sessionFactory.getCurrentSession().save(subject);
+        subjectRepository.addSubject(subject);
     }
 
     @Transactional
     public void updateSubject(SubjectInfo subject) {
-        sessionFactory.getCurrentSession().update(subject);
+        subjectRepository.updateSubject(subject);
     }
 
     @Transactional
     public SubjectInfo getSubjectById(Long id) {
-        return (SubjectInfo) sessionFactory.getCurrentSession().load(SubjectInfo.class, id);
+        return subjectRepository.getSubjectById(id);
     }
 
     @Transactional
     public void deleteSubject(SubjectInfo subject) {
-        sessionFactory.getCurrentSession().delete(subject);
+        subjectRepository.deleteSubject(subject);
     }
 }

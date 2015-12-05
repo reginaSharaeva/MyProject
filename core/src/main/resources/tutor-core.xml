@@ -13,11 +13,12 @@
            http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!-- Включаем опцию использования конфигурационных аннотаций (@Annotation-based configuration)-->
+    <!-- Включаем опцию использования конфигурационных аннотаций (@Annotation-based configuration) -->
     <context:annotation-config/>
 
-    <!-- Определяем папки, в которых будем автоматически искать бины-компоненты (@Component, @Service)  -->
+    <!-- Определяем папки, в которых будем автоматически искать бины-компоненты (@Component, @Service, @Repository) -->
     <context:component-scan base-package="ru.dz.labs.api.service"/>
+    <context:component-scan base-package="ru.dz.labs.api.repository"/>
 
     <!-- Настраивает управление транзакциями с помощью аннотации @Transactional -->
     <tx:annotation-driven transaction-manager="transactionManager"/>

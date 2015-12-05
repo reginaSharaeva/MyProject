@@ -1,10 +1,10 @@
 package ru.dz.labs.api.service;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.dz.labs.api.domain.TutorInfo;
+import ru.dz.labs.api.repository.TutorRepository;
 
 import java.util.List;
 
@@ -16,16 +16,15 @@ import java.util.List;
 public class TutorService {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    private TutorRepository tutorRepository;
 
     @Transactional
-    @SuppressWarnings("unchecked")
     public List<TutorInfo> getAllTutor() {
-        return sessionFactory.getCurrentSession().createCriteria(TutorInfo.class).list();
+        return tutorRepository.getAllTutor();
     }
 
     @Transactional
     public void add(TutorInfo tutorInfo) {
-        sessionFactory.getCurrentSession().save(tutorInfo);
+        tutorRepository.add(tutorInfo);
     }
 }
