@@ -17,8 +17,8 @@
     <context:annotation-config/>
 
     <!-- Определяем папки, в которых будем автоматически искать бины-компоненты (@Component, @Service, @Repository) -->
-    <context:component-scan base-package="ru.dz.labs.api.service"/>
-    <context:component-scan base-package="ru.dz.labs.api.repository"/>
+    <context:component-scan base-package="ru.kpfu.itis.toyshop.service"/>
+    <context:component-scan base-package="ru.kpfu.itis.toyshop.repository"/>
 
     <!-- Настраивает управление транзакциями с помощью аннотации @Transactional -->
     <tx:annotation-driven transaction-manager="transactionManager"/>

@@ -5,9 +5,13 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Подключение объектов сущностей -->
-        <mapping package="ru.dz.labs.api.domain"/>
-        <mapping class="ru.dz.labs.api.domain.SubjectInfo"/>
-        <mapping class="ru.dz.labs.api.domain.CityInfo"/>
-        <mapping class="ru.dz.labs.api.domain.TutorInfo"/>
+        <mapping package="ru.kpfu.itis.toyshop.domain"/>
+        <mapping class="ru.kpfu.itis.toyshop.domain.Address"/>
+        <mapping class="ru.kpfu.itis.toyshop.domain.Cart"/>
+        <mapping class="ru.kpfu.itis.toyshop.domain.Category"/>
+        <mapping class="ru.kpfu.itis.toyshop.domain.Good"/>
+        <mapping class="ru.kpfu.itis.toyshop.domain.Order"/>
+        <mapping class="ru.kpfu.itis.toyshop.domain.Order_Good"/>
+        <mapping class="ru.kpfu.itis.toyshop.domain.User"/>
     </session-factory>
 </hibernate-configuration>

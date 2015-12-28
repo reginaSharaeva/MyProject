@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dz-labs</groupId>
-    <artifactId>tutors</artifactId>
+    <artifactId>MyProject</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -24,9 +24,9 @@
 
     <profiles>
         <profile>
-            <id>kamil-dev</id>
+            <id>regina-developer</id>
             <properties>
-                <tomcatHome>C:/Java/apache-tomcat-8.0.14</tomcatHome>
+                <tomcatHome>C:/Java/apache-tomcat-8.0.27</tomcatHome>
             </properties>
         </profile>
         <profile>
