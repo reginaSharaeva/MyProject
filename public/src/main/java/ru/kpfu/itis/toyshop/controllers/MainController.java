@@ -36,4 +36,16 @@ public class MainController extends BaseController {
     public String renderBookView() {
         return "good";
     }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String renderLogin() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String renderRegister() {
+        return "register";
+    }
+
+
 }

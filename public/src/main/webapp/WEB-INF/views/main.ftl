@@ -33,8 +33,9 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="register"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
-                <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
+                <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
+                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
+                <li><a href="/cart"> Корзина</a></li>
             </ul>
         </div>
     </div>
