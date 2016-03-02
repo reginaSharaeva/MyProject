@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * @author Gataullin Kamil
- *         12.10.2014 22:34
- */
+
 @Controller
 public class BaseController {
 

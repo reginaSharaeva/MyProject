@@ -26,10 +26,10 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "check")
+    @Column(name = "checks")
     private String check;
 
-    @Column(name = "key")
+    @Column(name = "keys")
     private String key;
 
     @OneToMany(cascade = CascadeType.REFRESH,

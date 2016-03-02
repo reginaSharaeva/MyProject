@@ -1,18 +1,16 @@
+<#macro mainTemplate title="Toy Shop">
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${title}</title>
 
-    <title>Toy Shop</title>
-
-    <link href="/../../resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/../../resources/css/custom.css" rel="stylesheet">
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/css/custom.css" rel="stylesheet">
 
 </head>
-
 <body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div id="navbar" class="collapse navbar-collapse">
@@ -40,3 +38,10 @@
         </div>
     </div>
 </nav>
+    <@m_body/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="/resources/js/bootstrap.min.js"></script>
+</body>
+</html>
+</#macro>

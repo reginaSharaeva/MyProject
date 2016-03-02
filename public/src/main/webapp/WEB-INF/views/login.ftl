@@ -1,4 +1,6 @@
-<#include "main.ftl"/>
+<#include "templates/main_template.ftl">
+<@mainTemplate title="Toy Shop" />
+<#macro m_body>
 <form class="form-horizontal" action='' method="POST">
     <fieldset class="reg">
         <div id="legend">
@@ -30,4 +32,4 @@
         </div>
     </fieldset>
 </form>
-<#include "main_2.ftl"/>
+</#macro>
