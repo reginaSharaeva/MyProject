@@ -38,7 +38,7 @@ public class Good {
     private String image;
 
     @Column(name = "description")
-    private String discription;
+    private String description;
 
     @Column(name = "color")
     private String color;
@@ -62,7 +62,7 @@ public class Good {
     public Good() {
     }
 
-    public Good(String name, Date year, String country, BigDecimal price, int count, double size, String image, String discription, String color, Category category, List<Cart> cart, List<Order_Good> order_goods) {
+    public Good(String name, Date year, String country, BigDecimal price, int count, double size, String image, String description, String color, Category category, List<Cart> cart, List<Order_Good> order_goods) {
         this.name = name;
         this.year = year;
         this.country = country;
@@ -70,7 +70,7 @@ public class Good {
         this.count = count;
         this.size = size;
         this.image = image;
-        this.discription = discription;
+        this.description = description;
         this.color = color;
         this.category = category;
         this.cart = cart;
@@ -109,8 +109,8 @@ public class Good {
         return image;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
     public String getColor() {

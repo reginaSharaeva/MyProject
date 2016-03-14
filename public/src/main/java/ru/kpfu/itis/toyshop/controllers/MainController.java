@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.toyshop.controllers.BaseController;
+import ru.kpfu.itis.toyshop.service.CartService;
 import ru.kpfu.itis.toyshop.service.GoodService;
 
 /**
@@ -16,6 +17,9 @@ public class MainController extends BaseController {
     @Autowired
     private GoodService goodService;
 
+    @Autowired
+    private CartService cartService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String renderMainPage() {
         return "main_page";
@@ -23,17 +27,23 @@ public class MainController extends BaseController {
 
     @RequestMapping(value = "/catalog", method = RequestMethod.GET)
     public String renderCatalog() {
-        request.setAttribute("allGoods", goodService.getAllGoods());
+        if (request.getParameter("id") == null) {
+            request.setAttribute("allGoods", goodService.getAllGoods());
+        } else {
+            Long id = Long.parseLong(request.getParameter("id"));
+            request.setAttribute("allGoods", goodService.getAllGoods(id));
+        }
         return "catalog";
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public String renderCart() {
+        request.setAttribute("allCarts", cartService.getAllCarts());
         return "cart";
     }
 
     @RequestMapping(value = "/good", method = RequestMethod.GET)
-    public String renderBookView() {
+    public String renderToyView() {
         return "good";
     }
 

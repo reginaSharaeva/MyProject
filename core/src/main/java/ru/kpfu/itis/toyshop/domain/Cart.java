@@ -48,5 +48,17 @@ public class Cart {
     public Long getCount() {
         return count;
     }
+
+    public void setGoods(Good goods) {
+        this.goods = goods;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
 }
 

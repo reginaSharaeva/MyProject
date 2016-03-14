@@ -21,4 +21,12 @@ public class GoodService {
     public List<Good> getAllGoods() {
         return goodsRepository.getAllGoods();
     }
+
+    public List<Good> getAllGoods(Long id) {
+        return goodsRepository.getAllGoods(id);
+    }
+
+    public Good getGood(Long goodId) {
+        return goodsRepository.getGoodById(goodId);
+    }
 }
