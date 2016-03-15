@@ -24,7 +24,7 @@
     <div class="container">
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Toy Shop</a></li>
+                <li ><a href="/">Toy Shop</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="/catalog">Каталог
                         <span class="caret"></span>

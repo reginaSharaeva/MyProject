@@ -1,4 +1,3 @@
 <div class="contaner-main">
-    <h1>Toy Shop</h1>
-    <span>Магазин игрушек</span>
+    <span>Добро пожаловать в</span>
 </div>

@@ -142,17 +142,24 @@ body, html {
 	<div class="carousel">
 		<div class="carousel__content">
 			<div class="item">
-        <img src="/resources/images/magazin-igrushek1.jpg" alt="">
+        <img src="/resources/images/magazin-igrushek1.jpg" class="img-carousel-main" alt="">
       </div>
 			<div class="item">
-        <img src="/resources/images/magazin-igrushek2.jpg" alt="">
+        <img src="/resources/images/magazin-igrushek2.jpg" class="img-carousel-main" alt="">
       </div>
+            <div class="item">
+                <img src="/resources/images/magazin-igrushek1.jpg" class="img-carousel-main" alt="">
+            </div>
+
+            <div class="item">
+                <img src="/resources/images/magazin-igrushek2.jpg" class="img-carousel-main" alt="">
+            </div>
 
 		</div>
     
     <div class="carousel__nav">
-      <a href="#" class="nav nav--left">Previous</a>
-      <a href="#" class="nav nav--right">Next</a>
+      <a href="#" class="nav nav--left"><img src="/resources/images/strelka1.png" style="height: 10px; width: 10px"></a>
+      <a href="#" class="nav nav--right"><img src="/resources/images/strelka.png" style="height: 10px; width: 10px"></a>
     </div>
     
 	</div>
