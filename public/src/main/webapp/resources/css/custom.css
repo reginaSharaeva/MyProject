@@ -12,3 +12,11 @@
 .catalog{
   padding: 100px 15px;
 }
+
+.container{
+  height: 200px;
+}
+
+body{
+  min-height: 1500px;
+}

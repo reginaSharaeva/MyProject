@@ -7,8 +7,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ru.kpfu.itis.toyshop.domain.Category;
 import ru.kpfu.itis.toyshop.domain.Good;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -24,7 +26,8 @@ public class GoodRepository {
 
     @SuppressWarnings("unchecked")
     public List<Good> getAllGoods(Long id) {
-        return sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.eq("category.id", id)).list();
+        List<Object> categories = sessionFactory.getCurrentSession().createCriteria(Category.class).add(Restrictions.eq("parent_id", id.toString())).list();
+        return sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.in("category", categories.toArray())).list();
     }
 
     @SuppressWarnings("unchecked")

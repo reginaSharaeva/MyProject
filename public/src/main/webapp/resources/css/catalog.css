@@ -34,3 +34,7 @@
     display: block;
     margin: 0 auto;
 }
+
+#item-category{
+    color: red;
+}

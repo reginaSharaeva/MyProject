@@ -1,0 +1,11 @@
+.contaner-main{
+    height: 170px;
+    padding: 50px 0 0 0;
+}
+.contaner-main>h1{
+    text-align: center;
+}
+.contaner-main>span{
+    display: block;
+    text-align: center;
+}

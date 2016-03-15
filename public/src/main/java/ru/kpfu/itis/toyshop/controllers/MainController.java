@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.toyshop.controllers.BaseController;
 import ru.kpfu.itis.toyshop.service.CartService;
+import ru.kpfu.itis.toyshop.service.CategoryService;
 import ru.kpfu.itis.toyshop.service.GoodService;
 
 /**
@@ -20,6 +21,9 @@ public class MainController extends BaseController {
     @Autowired
     private CartService cartService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String renderMainPage() {
         return "main_page";
@@ -29,9 +33,11 @@ public class MainController extends BaseController {
     public String renderCatalog() {
         if (request.getParameter("id") == null) {
             request.setAttribute("allGoods", goodService.getAllGoods());
+            request.setAttribute("allCategories", categoryService.getCategoryByParent());
         } else {
             Long id = Long.parseLong(request.getParameter("id"));
             request.setAttribute("allGoods", goodService.getAllGoods(id));
+            request.setAttribute("allCategories", categoryService.getCategoryByParent(id));
         }
         return "catalog";
     }
@@ -55,6 +61,11 @@ public class MainController extends BaseController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String renderRegister() {
         return "register";
+    }
+
+    @RequestMapping(value = "/key", method = RequestMethod.GET)
+    public String renderKey() {
+        return "key";
     }
 
 

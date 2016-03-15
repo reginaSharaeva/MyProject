@@ -10,6 +10,13 @@
     <link href="/resources/css/custom.css" rel="stylesheet">
     <link href="/resources/css/catalog.css" rel="stylesheet">
     <link href="/resources/css/good.css" rel="stylesheet">
+    <link href="/resources/css/style.css" rel="stylesheet">
+    <link href="/resources/css/main-page.css" rel="stylesheet">
+
+    <script src="/resources/js/jquery-1.12.1.min.js"></script>
+    <script src="/resources/js/prefixfree.min.js"></script>
+    <script src="/resources/js/index.js"></script>
+
 
 </head>
 <body>
@@ -19,15 +26,14 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Toy Shop</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="/cart">Каталог
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/catalog">Каталог
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="/catalog">Все товары</a></li>
-                        <li><a href="/catalog?id=37">Машинки</a></li>
-                        <li><a href="/catalog?id=36">Куклы</a></li>
-                        <li><a href="/catalog?id=38">Конструкторы</a></li>
-                        <li><a href="/catalog?id=39">Детская посуда</a></li>
+                        <li><a href="/catalog?id=40">Для самых маленьких</a></li>
+                        <li><a href="/catalog?id=33">Для девочек</a></li>
+                        <li><a href="/catalog?id=34">Для мальчиков</a></li>
                     </ul>
                 </li>
             </ul>

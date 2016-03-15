@@ -11,7 +11,7 @@
         <span class="span-good">${good.description}</span>
         <span class="span-good">${good.category.id} ${good.category.name}</span>
         <span class="span-good">${good.price}</span>
-        <input type="submit" value="Добавить в корзину">
+        <a href="/cart?cartGoodId=${good.id}"><input type="submit" value="Добавить в корзину" class="add-tocard-catalog"></a>
     <#else>
         Данного товара нет!
     </#if>
