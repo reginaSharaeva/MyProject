@@ -18,17 +18,22 @@ import java.util.Map;
  */
 @Service
 public class CartService {
-    /**
-     * Добавление товара в корзину
-     */
+
 
     @Autowired
     private CartRepository cartRepository;
 
+    /**
+     * Отображение товаров из корзины
+     * @return
+     */
     public List<Cart> getAllCarts() {
         return cartRepository.getAllCarts();
     }
 
+    /**
+     * Добавление товара в корзину
+     */
     public void addInCart(Long goodId, Long userId) {
         cartRepository.addInCart(goodId, userId);
     }

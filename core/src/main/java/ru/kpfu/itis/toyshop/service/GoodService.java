@@ -18,18 +18,36 @@ public class GoodService {
     private GoodRepository goodsRepository;
 
     @Transactional
+    /**
+     * Отображение всех товаров в каталоге
+     */
     public List<Good> getAllGoods() {
         return goodsRepository.getAllGoods();
     }
 
+    /**
+     * Отображение товаров по родительским категориям
+     * @param id
+     * @return
+     */
     public List<Good> getAllGoods(Long id) {
         return goodsRepository.getAllGoods(id);
     }
 
+    /**
+     * Отображение товара по его id
+     * @param goodId
+     * @return
+     */
     public Good getGood(Long goodId) {
         return goodsRepository.getGoodById(goodId);
     }
 
+    /**
+     * Отображение товаров по дочерним категориям
+     * @param categoryId
+     * @return
+     */
     public List<Good> getAllGoodsByCategory(Long categoryId) {
         return goodsRepository.getAllGoodsByCategory(categoryId);
     }

@@ -29,6 +29,12 @@ public class MainController extends BaseController {
         return "main_page";
     }
 
+
+    /**
+     * Отображение каталога с главной страницы
+     *
+     * @return
+     */
     @RequestMapping(value = "/catalog", method = RequestMethod.GET)
     public String renderCatalog() {
         if (request.getParameter("id") == null) {
@@ -42,6 +48,11 @@ public class MainController extends BaseController {
         return "catalog";
     }
 
+    /**
+     *
+     * Отображение корзины
+     * @return
+     */
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public String renderCart() {
         request.setAttribute("allCarts", cartService.getAllCarts());
@@ -62,11 +73,5 @@ public class MainController extends BaseController {
     public String renderRegister() {
         return "register";
     }
-
-    @RequestMapping(value = "/key", method = RequestMethod.GET)
-    public String renderKey() {
-        return "key";
-    }
-
 
 }

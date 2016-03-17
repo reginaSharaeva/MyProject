@@ -23,5 +23,9 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
+
+    public void addUser(String name, String mail, String password) {
+        userRepository.addUser(name, mail, password);
+    }
 }
 

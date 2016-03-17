@@ -21,6 +21,10 @@ public class GoodController {
     @Autowired
     private GoodService goodService;
 
+    /**
+     *
+     * Отображение товара
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String renderGoodPage(@PathVariable("id") Long goodId) {
         request.setAttribute("good", goodService.getGood(goodId));

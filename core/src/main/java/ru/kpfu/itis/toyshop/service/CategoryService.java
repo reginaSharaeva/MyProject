@@ -16,10 +16,19 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    /**
+     * Отображение всех категорий по категории родителя
+     * @param parent
+     * @return
+     */
     public List<Category> getCategoryByParent(Long parent) {
         return categoryRepository.getCategoryByParent(parent);
     }
 
+    /**
+     * Отображение всех дочерних категорий
+     * @return
+     */
     public List<Category> getCategoryByParent() {
         return categoryRepository.getCategoryByParent();
     }
