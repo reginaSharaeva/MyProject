@@ -1,4 +1,4 @@
-<#macro mainTemplate title="Toy Shop">
+<#macro mainTemplate title="Toy Shop" styles=[] scripts=[] >
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +12,16 @@
     <link href="/resources/css/good.css" rel="stylesheet">
     <link href="/resources/css/style.css" rel="stylesheet">
     <link href="/resources/css/main-page.css" rel="stylesheet">
+<#list styles as css>
+    <link rel="stylesheet" href="/resources/${css}" type="text/css" />
+</#list>
 
     <script src="/resources/js/jquery-1.12.1.min.js"></script>
     <script src="/resources/js/prefixfree.min.js"></script>
     <script src="/resources/js/index.js"></script>
-
+<#list scripts as js>
+    <script src="/resources/${js}" type="text/javascript" defer></script>
+</#list>
 
 </head>
 <body>

@@ -18,12 +18,14 @@ public class CategoryRepository {
 
     @SuppressWarnings("unchecked")
     public List<Category> getCategoryByParent(Long parent) {
-        return sessionFactory.getCurrentSession().createCriteria(Category.class).add(Restrictions.eq("parent_id", parent.toString())).list();
+        return sessionFactory.getCurrentSession().createCriteria(Category.class)
+                .add(Restrictions.eq("parent_id", parent.toString())).list();
     }
 
     @SuppressWarnings("unchecked")
     public List<Category> getCategoryByParent() {
-        return sessionFactory.getCurrentSession().createCriteria(Category.class).add(Restrictions.in("parent_id", new String[]{"33", "34", "40"})).list();
+        return sessionFactory.getCurrentSession().createCriteria(Category.class)
+                .add(Restrictions.in("parent_id", new String[]{"33", "34", "40"})).list();
     }
 
 

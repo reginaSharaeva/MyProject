@@ -29,4 +29,8 @@ public class GoodService {
     public Good getGood(Long goodId) {
         return goodsRepository.getGoodById(goodId);
     }
+
+    public List<Good> getAllGoodsByCategory(Long categoryId) {
+        return goodsRepository.getAllGoodsByCategory(categoryId);
+    }
 }

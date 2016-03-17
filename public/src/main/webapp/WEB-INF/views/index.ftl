@@ -142,20 +142,20 @@ body, html {
 	<div class="carousel">
 		<div class="carousel__content">
 			<div class="item">
-        <img src="/resources/images/magazin-igrushek1.jpg" class="img-carousel-main" alt="">
-      </div>
-			<div class="item">
-        <img src="/resources/images/magazin-igrushek2.jpg" class="img-carousel-main" alt="">
-      </div>
-            <div class="item">
-                <img src="/resources/images/magazin-igrushek1.jpg" class="img-carousel-main" alt="">
+               <img src="/resources/images/magazin-igrushek1.jpg" class="img-carousel-main" alt="">
             </div>
 
             <div class="item">
-                <img src="/resources/images/magazin-igrushek2.jpg" class="img-carousel-main" alt="">
+              <img src="/resources/images/magazin-igrushek2.jpg" class="img-carousel-main" alt="">
+            </div>
+            <div class="item">
+                <img src="/resources/images/mir.jpg" class="img-carousel-main" alt="">
             </div>
 
-		</div>
+            <div class="item">
+                <img src="/resources/images/mir-igrushek.png" class="img-carousel-main" alt="">
+            </div>
+        </div>
     
     <div class="carousel__nav">
       <a href="#" class="nav nav--left"><img src="/resources/images/strelka1.png" style="height: 10px; width: 10px"></a>
@@ -165,8 +165,7 @@ body, html {
 	</div>
 </div>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js'></script>
-
-        <script src="/resources/js/index.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js'></script>
+    <script src="/resources/js/index.js"></script>
   </body>
 </html>
