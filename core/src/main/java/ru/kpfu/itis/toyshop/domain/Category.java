@@ -21,7 +21,7 @@ public class Category {
     private String alias;
 
     @Column(name = "parent_id")
-    private String parent_id;
+    private Long parent_id;
 
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
@@ -31,7 +31,7 @@ public class Category {
     public Category() {
     }
 
-    public Category(String name, String alias, String parent_id, List<Good> goods) {
+    public Category(String name, String alias, Long parent_id, List<Good> goods) {
         this.name = name;
         this.alias = alias;
         this.parent_id = parent_id;
@@ -54,7 +54,7 @@ public class Category {
         return goods;
     }
 
-    public String getParent_id() {
+    public Long getParent_id() {
         return parent_id;
     }
 }

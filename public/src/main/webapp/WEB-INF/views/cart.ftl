@@ -14,9 +14,8 @@
                 </form>
                 <input type="submit" value="Купить">
             </div>
-
         </#list>
-    <#else><p>Нет товаров</p>
+    <#else><p>Корзина пуста</p>
     </#if>
 </div>
 </#macro>

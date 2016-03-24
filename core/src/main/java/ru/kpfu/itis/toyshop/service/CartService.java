@@ -7,7 +7,6 @@ import ru.kpfu.itis.toyshop.domain.Cart;
 import ru.kpfu.itis.toyshop.repository.CartRepository;
 import ru.kpfu.itis.toyshop.repository.GoodRepository;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +24,7 @@ public class CartService {
 
     /**
      * Отображение товаров из корзины
+     *
      * @return
      */
     public List<Cart> getAllCarts() {

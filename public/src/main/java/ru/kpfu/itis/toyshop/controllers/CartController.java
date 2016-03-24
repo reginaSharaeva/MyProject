@@ -2,7 +2,6 @@ package ru.kpfu.itis.toyshop.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,18 +18,19 @@ public class CartController {
 
     @Autowired
     private HttpServletRequest request;
+
     @Autowired
     private CartService cartService;
 
     /**
      * Добавление товара в корзину
      *
-     * @param goodId id товара
+     * @param cartGoodId id товара
      */
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addInCart(Long goodId, Long userId) {
-        cartService.addInCart(Long.parseLong(request.getParameter("cartGoodId")), Long.parseLong(request.getParameter("userId")));
+    public String addInCart(Long cartGoodId, Long userId) {
+        cartService.addInCart(cartGoodId, userId);
         return "added";
     }
 

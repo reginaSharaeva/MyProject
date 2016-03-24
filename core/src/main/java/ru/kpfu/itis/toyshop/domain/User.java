@@ -27,7 +27,7 @@ public class User {
     private String name;
 
     @Column(name = "checks")
-    private String check;
+    private boolean check;
 
     @Column(name = "keys")
     private String key;
@@ -50,7 +50,7 @@ public class User {
     public User() {
     }
 
-    public User(String login, String hash_pass, String avatar, String name, String check, String key, List<Address> address, List<Order> orders, List<Cart> cart) {
+    public User(String login, String hash_pass, String avatar, String name, boolean check, String key, List<Address> address, List<Order> orders, List<Cart> cart) {
         this.login = login;
         this.hash_pass = hash_pass;
         this.avatar = avatar;
@@ -83,7 +83,7 @@ public class User {
         return name;
     }
 
-    public String getCheck() {
+    public boolean getCheck() {
         return check;
     }
 

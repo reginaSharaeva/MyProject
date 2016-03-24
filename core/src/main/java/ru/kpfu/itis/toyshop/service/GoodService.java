@@ -51,4 +51,11 @@ public class GoodService {
     public List<Good> getAllGoodsByCategory(Long categoryId) {
         return goodsRepository.getAllGoodsByCategory(categoryId);
     }
+    public List<Good> getAllGoodsBySort(String sort, List<Good> goods) {
+        return goodsRepository.getAllGoodsBySort(sort, goods);
+    }
+
+    public List<Good> getAllGoodsByPrice(String prices, List<Good> goods) {
+        return goodsRepository.getAllGoodsByPrice(prices, goods);
+    }
 }

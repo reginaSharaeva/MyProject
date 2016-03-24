@@ -10,6 +10,7 @@ import ru.kpfu.itis.toyshop.service.CategoryService;
 import ru.kpfu.itis.toyshop.service.GoodService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -20,7 +21,8 @@ import java.util.List;
 public class CatalogController {
 
     @Autowired
-    private HttpServletRequest request;
+    private HttpSession session;
+
     @Autowired
     private GoodService goodService;
 
@@ -30,9 +32,25 @@ public class CatalogController {
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public String catalogFilter(@RequestParam(required = false) Long categoryId) {
         List<Good> goods = goodService.getAllGoodsByCategory(categoryId);
-        request.setAttribute("allGoods", goods);
+        session.setAttribute("allGoods", goods);
+        session.setAttribute("allGoodsByCategory", goods);
         return "catalogContent";
     }
 
+    @RequestMapping(value = "/sorter", method = RequestMethod.POST)
+    public String catalogSort(@RequestParam(required = false) String sort) {
+        List<Good> allGoods = (List<Good>) session.getAttribute("allGoods");
+        Object goods = goodService.getAllGoodsBySort(sort, allGoods);
+        session.setAttribute("allGoods", goods);
+        session.setAttribute("allGoodsByCategory", goods);
+        return "catalogContent";
+    }
 
+    @RequestMapping(value = "/prices", method = RequestMethod.POST)
+    public String priceSort(@RequestParam(required = false) String prices) {
+        List<Good> allGoods = (List<Good>) session.getAttribute("allGoodsByCategory");
+        Object goods = goodService.getAllGoodsByPrice(prices, allGoods);
+        session.setAttribute("allGoods", goods);
+        return "catalogContent";
+    }
 }

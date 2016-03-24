@@ -10,6 +10,6 @@
             <!--ignore-resource-not-found="true"-->
             <!--ignore-unresolvable="true"/>-->
 
-    <import resource="classpath*:tutor-core.xml"/>
+    <import resource="classpath*:toyshop-core.xml"/>
 
 </beans>
