@@ -17,6 +17,7 @@ import java.util.List;
  * Created by Регина on 16.03.2016.
  */
 @Controller
+@RequestMapping(value = "/catalog")
 public class CatalogController {
 
     @Autowired
@@ -36,7 +37,7 @@ public class CatalogController {
      *
      * @return
      */
-    @RequestMapping(value = "/catalog", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String renderCatalog() {
         if (request.getParameter("id") == null) {
             session.setAttribute("allGoods", goodService.getAllGoods());
@@ -74,7 +75,7 @@ public class CatalogController {
     @RequestMapping(value = "/prices", method = RequestMethod.POST)
     public String priceSort(@RequestParam(required = false) String prices) {
         List<Good> allGoods = (List<Good>) session.getAttribute("allGoodsByCategory");
-        Object goods = goodService.getAllGoodsByPrice(prices, allGoods);
+        List<Good> goods = goodService.getAllGoodsByPrice(prices, allGoods);
         session.setAttribute("allGoods", goods);
         return "catalog/catalogContent";
     }
