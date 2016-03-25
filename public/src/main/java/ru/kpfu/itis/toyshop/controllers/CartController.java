@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Regina on 24.02.2016.
  */
 @Controller
-@RequestMapping("/cart")
+@RequestMapping(value = "/cart")
 public class CartController {
 
     @Autowired
@@ -22,16 +22,29 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+
+    /**
+     *
+     * Отображение корзины
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public String renderCart() {
+        request.setAttribute("allCarts", cartService.getAllCarts());
+        return "cartPage";
+    }
+
     /**
      * Добавление товара в корзину
      *
-     * @param cartGoodId id товара
+     * @param goodId id товара
      */
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addInCart(Long cartGoodId, Long userId) {
-        cartService.addInCart(cartGoodId, userId);
-        return "added";
+    public String addInCart(Long goodId) {
+        cartService.addInCart(goodId, (long) 1);
+        request.setAttribute("goodInCart", true);
+        return "ok";
     }
 
 }

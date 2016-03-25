@@ -25,7 +25,7 @@ public class UserRepository {
 
 
     @SuppressWarnings("unchecked")
-    public User getUserById(Long userId) {return (User) sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.idEq(userId)).uniqueResult();}
+    public User getUserById(Long userId) {return (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("id", userId)).uniqueResult();}
 
     @SuppressWarnings("unchecked")
     public void addUser(String name, String mail, String password) {

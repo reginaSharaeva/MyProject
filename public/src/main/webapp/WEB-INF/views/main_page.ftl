@@ -2,6 +2,6 @@
 <@mainTemplate title="Toy Shop" />
 <#macro m_body>
     <#include "templates/header.ftl"/>
-<#include "index.ftl"/>
+<#include "carousel/index.ftl"/>
 </div>
 </#macro>

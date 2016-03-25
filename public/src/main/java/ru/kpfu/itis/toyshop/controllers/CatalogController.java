@@ -17,7 +17,6 @@ import java.util.List;
  * Created by Регина on 16.03.2016.
  */
 @Controller
-@RequestMapping("/catalog")
 public class CatalogController {
 
     @Autowired
@@ -25,6 +24,32 @@ public class CatalogController {
 
     @Autowired
     private GoodService goodService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private HttpServletRequest request;
+
+    /**
+     * Отображение каталога с главной страницы
+     *
+     * @return
+     */
+    @RequestMapping(value = "/catalog", method = RequestMethod.GET)
+    public String renderCatalog() {
+        if (request.getParameter("id") == null) {
+            session.setAttribute("allGoods", goodService.getAllGoods());
+            session.setAttribute("allGoodsByCategory", goodService.getAllGoods());
+            request.setAttribute("allCategories", categoryService.getCategoryByParent());
+        } else {
+            Long id = Long.parseLong(request.getParameter("id"));
+            session.setAttribute("allGoods", goodService.getAllGoods(id));
+            session.setAttribute("allGoodsByCategory", goodService.getAllGoods());
+            request.setAttribute("allCategories", categoryService.getCategoryByParent(id));
+        }
+        return "catalog/catalog";
+    }
 
     /**
      * Обработка фильтра по категории
@@ -34,7 +59,7 @@ public class CatalogController {
         List<Good> goods = goodService.getAllGoodsByCategory(categoryId);
         session.setAttribute("allGoods", goods);
         session.setAttribute("allGoodsByCategory", goods);
-        return "catalogContent";
+        return "catalog/catalogContent";
     }
 
     @RequestMapping(value = "/sorter", method = RequestMethod.POST)
@@ -43,7 +68,7 @@ public class CatalogController {
         Object goods = goodService.getAllGoodsBySort(sort, allGoods);
         session.setAttribute("allGoods", goods);
         session.setAttribute("allGoodsByCategory", goods);
-        return "catalogContent";
+        return "catalog/catalogContent";
     }
 
     @RequestMapping(value = "/prices", method = RequestMethod.POST)
@@ -51,6 +76,6 @@ public class CatalogController {
         List<Good> allGoods = (List<Good>) session.getAttribute("allGoodsByCategory");
         Object goods = goodService.getAllGoodsByPrice(prices, allGoods);
         session.setAttribute("allGoods", goods);
-        return "catalogContent";
+        return "catalog/catalogContent";
     }
 }

@@ -1,4 +1,5 @@
 <#-- @ftlvariable name="good" type="ru.kpfu.itis.toyshop.domain.Good" -->
+<#-- @ftlvariable name="goodInCart" type="boolean" -->
 <#include "templates/main_template.ftl">
 <@mainTemplate />
 <#macro m_body>
@@ -11,7 +12,11 @@
         <span class="span-good">${good.description}</span>
         <span class="span-good">${good.category.id} ${good.category.name}</span>
         <span class="span-good">${good.price}</span>
-        <a href="/cart?cartGoodId=${good.id}"><input type="submit" value="Добавить в корзину" class="add-tocard-catalog"></a>
+        <#if goodInCart?has_content>
+            <a href="/cart"><input type="submit" value="Добавлено" class="add-tocard-catalog"></a>
+        <#else>
+            <a href="/cart"><input type="submit" value="Добавить в корзину" class="add-tocard-catalog js_addToCart" data-id="${good.id}" ></a>
+        </#if>
     <#else>
         Данного товара нет!
     </#if>

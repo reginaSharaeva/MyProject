@@ -32,15 +32,14 @@ public class CartRepository {
     }
 
     @SuppressWarnings("unchecked")
-    public void addInCart(Long goodId, Long userId) {
-        Cart cart = (Cart) sessionFactory.getCurrentSession().createCriteria(Cart.class).add(Restrictions.conjunction().add(Restrictions.eq("users.id", userId)).add(Restrictions.eq("goods.id", goodId))).uniqueResult();
+    public void addInCart(Good good, User user) {
+        Cart cart = (Cart) sessionFactory.getCurrentSession().createCriteria(Cart.class).add(Restrictions.conjunction().add(Restrictions.eq("users", user)).add(Restrictions.eq("goods", good))).uniqueResult();
         if (cart == null) {
-            Good good = goodRepository.getGoodById(goodId);
-            User user = userRepository.getUserById(userId);
             sessionFactory.getCurrentSession().save(new Cart(good, user, (long) 1));
         } else {
             Long count = cart.getCount() + 1;
-            sessionFactory.getCurrentSession().createQuery("update Cart set count = :newCount where users.id = :userId and goods.id = :goodsId").setString("newCount", "count").setString("userId", "userId").setString("goodsId", "goodsId").executeUpdate();
+
+            cart.setCount(count);
         }
     }
 }

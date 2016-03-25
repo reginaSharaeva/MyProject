@@ -49,8 +49,25 @@ $(document).ready(function() {
                 alert('Приносим извинения.<br/>На сервере произошла ошибка');
             }
         });
-    })
+    });
+    $(document).on('click', '.js_addToCart', function () {
+        event.preventDefault();
+        var $this = $(this);
+        $.ajax({
+            type: 'POST',
+            url: '/cart/add',
+            data: {"goodId": $this.data('id')},
+            success: function (data) {  // успешное завершение работы
+                $this.removeClass('js_addToCart').val('Добавлено').css('background', 'rgb(280, 124, 83)');
+            },
+            error: function () {    // На сервере произошла ошибка
+                alert('Приносим извинения.<br/>На сервере произошла ошибка');
+            }
+        });
+    });
 });
+
+
 
 
 

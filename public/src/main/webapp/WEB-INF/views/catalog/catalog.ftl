@@ -1,7 +1,7 @@
 <#-- @ftlvariable name="user" type="ru.kpfu.itis.toyshop.domain.User" -->
 <#-- @ftlvariable name="allCategories" type="java.util.List<ru.kpfu.itis.toyshop.domain.Category>" -->
 
-<#include "templates/main_template.ftl">
+<#include "../templates/main_template.ftl">
 <@mainTemplate title="Toy Shop" scripts=["js/my/catalog.js"] />
 <#macro m_body>
 <h1 class="starter-template">Каталог</h1>
