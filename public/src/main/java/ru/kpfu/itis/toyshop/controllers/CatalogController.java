@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.kpfu.itis.toyshop.domain.Good;
 import ru.kpfu.itis.toyshop.service.CategoryService;
 import ru.kpfu.itis.toyshop.service.GoodService;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * Created by Регина on 16.03.2016.
+ * Created by Regina on 16.03.2016.
  */
 @Controller
 @RequestMapping(value = "/catalog")

@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.kpfu.itis.toyshop.service.CartService;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -31,6 +30,7 @@ public class CartController {
     @RequestMapping(method = RequestMethod.GET)
     public String renderCart() {
         request.setAttribute("allCarts", cartService.getAllCarts());
+        request.setAttribute("totalAmount",cartService.getTotalAmount(cartService.getAllCarts()));
         return "cartPage";
     }
 

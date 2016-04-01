@@ -32,6 +32,9 @@ public class User {
     @Column(name = "keys")
     private String key;
 
+    @Column(name = "role")
+    private String role;
+
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
             mappedBy="users")
@@ -50,7 +53,7 @@ public class User {
     public User() {
     }
 
-    public User(String login, String hash_pass, String avatar, String name, boolean check, String key, List<Address> address, List<Order> orders, List<Cart> cart) {
+    public User(String login, String hash_pass, String avatar, String name, boolean check, String key, List<Address> address, List<Order> orders, List<Cart> cart, String role) {
         this.login = login;
         this.hash_pass = hash_pass;
         this.avatar = avatar;
@@ -60,6 +63,7 @@ public class User {
         this.address = address;
         this.orders = orders;
         this.cart = cart;
+        this.role = role;
     }
 
 
@@ -101,6 +105,14 @@ public class User {
 
     public List<Cart> getCart() {
         return cart;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
 

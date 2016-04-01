@@ -7,12 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.toyshop.form.RegisterFormBean;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
- * Created by Регина on 17.03.2016.
+ * Created by Regina on 17.03.2016.
  */
 @Controller
 @RequestMapping("/reg")

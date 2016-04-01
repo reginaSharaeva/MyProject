@@ -11,7 +11,6 @@ import ru.kpfu.itis.toyshop.domain.Category;
 import ru.kpfu.itis.toyshop.domain.Good;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -26,11 +25,9 @@ public class GoodRepository {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Good> getAllGoods(Long categoryId) {
-        List<Category> categories = sessionFactory.getCurrentSession().createCriteria(Category.class)
-                .add(Restrictions.eq("parent_id", categoryId)).list();
+    public List<Good> getAllGoods(List<Category> categories) {
         return sessionFactory.getCurrentSession().createCriteria(Good.class)
-                .add(Restrictions.in("category", categories.toArray())).list();
+                .add(Restrictions.in("category", categories)).list();
     }
 
     @SuppressWarnings("unchecked")
@@ -40,40 +37,28 @@ public class GoodRepository {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Good> getAllGoodsBySort(String sort, List<Good> goods) {
-        List<Long> idents = new ArrayList<>();
-        for (int i = 0; i < goods.size(); i++) {
-            idents.add(goods.get(i).getId());
-        }
-        String[] str = sort.split(",,");
-        List<Good> allGoods = null;
-        if (str[1].equals("desc")) {
-            allGoods = sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.in("id", idents)).addOrder(org.hibernate.criterion.Order.desc(str[0])).list();
-        }
-        if (str[1].equals("asc")) {
-            allGoods = sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.in("id", idents)).addOrder(org.hibernate.criterion.Order.asc(str[0])).list();
-        }
-        return allGoods;
+    public List<Good> getAllGoodsByAsc(List<Long> idents, String str) {
+        return sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.in("id", idents)).addOrder(org.hibernate.criterion.Order.asc(str)).list();
     }
 
     @SuppressWarnings("unchecked")
-    public List<Good> getAllGoodsByPrice(String prices, List<Good> goods) {
-        List<Long> idents = new ArrayList<>();
-        for (int i = 0; i < goods.size(); i++) {
-            idents.add(goods.get(i).getId());
-        }
-        List<Good> allGoods = null;
-        if (prices.equals("300")) {
-            allGoods = sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.and(Restrictions.in("id", idents)).add(Restrictions.le("price", new BigDecimal(prices)))).list();
-        } else {
-            if (prices.equals("1000")) {
-                allGoods = sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.and(Restrictions.in("id", idents)).add(Restrictions.ge("price", new BigDecimal(prices)))).list();
-            } else {
-                String[] pp = prices.split(",,");
-                allGoods = sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.and(Restrictions.in("id", idents)).add(Restrictions.ge("price", new BigDecimal(pp[0]))).add(Restrictions.le("price", new BigDecimal(pp[1])))).list();
-            }
-        }
-        return allGoods;
+    public List<Good> getAllGoodsByDesc(List<Long> idents, String str) {
+        return sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.in("id", idents)).addOrder(org.hibernate.criterion.Order.desc(str)).list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Good> getAllGoodsByPriceLess(List<Long> idents, String prices) {
+        return sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.and(Restrictions.in("id", idents)).add(Restrictions.le("price", new BigDecimal(prices)))).list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Good> getAllGoodsByPriceMore(List<Long> idents, String prices) {
+        return sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.and(Restrictions.in("id", idents)).add(Restrictions.ge("price", new BigDecimal(prices)))).list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Good> getAllGoodsByPriceBetween(List<Long> idents, String price1, String price2) {
+        return sessionFactory.getCurrentSession().createCriteria(Good.class).add(Restrictions.and(Restrictions.in("id", idents)).add(Restrictions.ge("price", new BigDecimal(price1))).add(Restrictions.le("price", new BigDecimal(price2)))).list();
     }
 
     @SuppressWarnings("unchecked")

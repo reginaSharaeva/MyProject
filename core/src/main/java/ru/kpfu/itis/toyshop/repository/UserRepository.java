@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.kpfu.itis.toyshop.domain.Good;
 import ru.kpfu.itis.toyshop.domain.User;
 
 import java.util.List;
@@ -31,6 +30,8 @@ public class UserRepository {
     public void addUser(String name, String mail, String password) {
 
     }
+    @SuppressWarnings("unchecked")
+    public User getUserByLogin(String login) {return (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("login", login)).uniqueResult();}
 
 }
 

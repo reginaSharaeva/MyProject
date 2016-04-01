@@ -12,6 +12,7 @@
     <link href="/resources/css/good.css" rel="stylesheet">
     <link href="/resources/css/style.css" rel="stylesheet">
     <link href="/resources/css/main-page.css" rel="stylesheet">
+    <link href="/resources/css/cart.css" rel="stylesheet">
 <#list styles as css>
     <link rel="stylesheet" href="/resources/${css}" type="text/css" />
 </#list>
@@ -44,8 +45,8 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/reg"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
-                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
+                <li><a href="/reg"><span class="user"></span> Регистрация</a></li>
+                <li><a href="/login"><span class="log-in"></span> Вход</a></li>
                 <li><a href="/cart"> Корзина</a></li>
             </ul>
         </div>

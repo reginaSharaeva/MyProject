@@ -12,4 +12,7 @@
 
     <import resource="classpath*:toyshop-core.xml"/>
 
+    <import resource="spring-security.xml" />
+
+
 </beans>

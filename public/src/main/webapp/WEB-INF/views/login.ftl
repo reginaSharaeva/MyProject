@@ -1,40 +1,46 @@
-<#assign form=JspTaglibs["http://www.springframework.org/tags/form"]>
+
 <#include "templates/main_template.ftl">
 <@mainTemplate title="Toy Shop" />
 <#macro m_body>
-<div class="account-in" xmlns="http://www.w3.org/1999/html">
+<div class="account-in">
     <div class="container">
-        <@form.form commandName="logForm" action="/login" acceptCharset="UTF-8" method="post">
-            </br>
-            </br>
-            </br>
         </br>
-        <div class="register-top-grid">
-            <div id="legend">
-                <legend class="">Вход</legend>
-            </div>
-        <#--<@form.errors path="*" cssStyle="color: red;" />-->
-            <div>
-                <span>E-Mail<label>*</label></span>
-                <@form.input path="email"/>
-                <@form.errors path="email" cssStyle="color: red;" />
-                <p class="help-block">Введите Ваш E-Mail</p>
-            </div>
-
-            <div>
-                <span>Password<label>*</label></span>
-                <@form.password path="password" />
-                <@form.errors path="password" cssStyle="color: red;" />
-                <p class="help-block">Введите пароль (пароль должен содержать не менее 7 символов)</p>
-            </div>
-            <div class="clearfix"> </div>
-            <div class="clearfix"> </div>
-            <div class="register-but">
-                <input type="submit" value="Войти" class="btn btn-lg btn-success">
-                <div class="clearfix"> </div>
-            </div>
-        </@form.form>
+        </br>
+        </br>
+        </br>
+        <div id="legend">
+            <legend class="">Регистрация</legend>
+        </div>
+        <div class="col-md-7 account-top">
+            <#if error?has_content>
+                <div style="color: red;">Ошибка! Пожалуйста проверьте Ваш e-mail и пароль!</div>
+            </#if>
+            <form name="authForm" id="authForm" action="/j_spring_security_check" method="post">
+                <div>
+                    <span>Email</span>
+                    <input type="text" name="j_username" />
+                </div>
+                <div>
+                    <span class="pass">Password</span>
+                    <input type="password" name="j_password" />
+                </div>
+                <div>
+                    </br>
+                    <input id="remember_me" name="_spring_security_remember_me" type="checkbox"/>
+                    <label for="remember_me" class="inline">Запомнить меня</label>
+                </div>
+                <input type="submit" value="Login" class="btn btn btn-lg btn-success"/>
+                <a href="/reg" style="margin-left: 15px;">Зарегистрироваться</a>
+            </form>
+        </div>
+        <div class="col-md-5 left-account "></div>
+        <div class="clearfix"> </div>
     </div>
-    </div>
+</div>
 </#macro>
+
+
+
+
+
 

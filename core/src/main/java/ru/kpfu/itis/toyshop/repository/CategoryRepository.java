@@ -5,11 +5,10 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.kpfu.itis.toyshop.domain.Category;
-
 import java.util.List;
 
 /**
- * Created by Регина on 14.03.2016.
+ * Created by Regina on 14.03.2016.
  */
 @Repository
 public class CategoryRepository {
@@ -23,8 +22,8 @@ public class CategoryRepository {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Category> getCategoryByParent() {
+    public List<Category> getCategoryByParent(List<Long> par_id) {
         return sessionFactory.getCurrentSession().createCriteria(Category.class)
-                .add(Restrictions.in("parent_id", new Long[]{(long) 33, (long) 34,(long) 40})).list();
+                .add(Restrictions.in("parent_id", par_id)).list();
     }
 }

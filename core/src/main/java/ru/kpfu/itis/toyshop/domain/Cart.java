@@ -60,5 +60,13 @@ public class Cart {
     public void setCount(Long count) {
         this.count = count;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
 

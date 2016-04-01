@@ -6,11 +6,8 @@ package ru.kpfu.itis.toyshop.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kpfu.itis.toyshop.domain.Good;
 import ru.kpfu.itis.toyshop.domain.User;
-import ru.kpfu.itis.toyshop.repository.GoodRepository;
 import ru.kpfu.itis.toyshop.repository.UserRepository;
-
 import java.util.List;
 
 @Service
@@ -26,6 +23,10 @@ public class UserService {
 
     public void addUser(String name, String mail, String password) {
         userRepository.addUser(name, mail, password);
+    }
+
+    public User getUserByLogin(String login) {
+        return userRepository.getUserByLogin(login);
     }
 }
 

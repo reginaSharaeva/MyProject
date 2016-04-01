@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.toyshop.service.GoodService;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by Регина on 10.03.2016.
+ * Created by Regina on 10.03.2016.
  */
 @Controller
 @RequestMapping(value = "/good")
