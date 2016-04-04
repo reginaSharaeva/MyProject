@@ -12,7 +12,7 @@
         <a href="/good/${goods.id}" class="href-catalog">${goods.name!} ${goods.color!} ${goods.price!}</a>
             </form>
         <#if goodInCart?has_content>
-            <a href="/cart"><input type="submit" value="Добавлено" class="add-tocard-catalog"></a>
+            <a href="/cart"><input type="submit" value="Перейти в корзину" class="add-tocard-catalog"></a>
         <#else>
             <a href="/cart"><input type="submit" value="Добавить в корзину" class="add-tocard-catalog js_addToCart" data-id="${goods.id}"></a>
         </#if>

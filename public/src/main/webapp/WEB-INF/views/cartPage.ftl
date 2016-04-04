@@ -1,12 +1,11 @@
-<#-- @ftlvariable name="allCarts" type="ru.kpfu.itis.toyshop.domain.Cart" -->
+<#-- @ftlvariable name="allCarts" type="java.util.List<ru.kpfu.itis.toyshop.domain.Cart>" -->
 <#-- @ftlvariable name="totalAmount" type="java.math.BigDecimal" -->
-
 <#include "templates/main_template.ftl">
-<@mainTemplate title="Toy Shop" />
+<@mainTemplate title="Мир игрушек" scripts=["js/my/cart.js"]/>
 <#macro m_body>
-<h1 class="cart-h">Корзина</h1>
-<a href="/catalog"><img src="/resources/images/back.jpg" style="height: 30px; width: 30px"></a>
-<div class="main-block">
+<div id="main-block">
+    <h1 class="cart-h">Корзина</h1>
+    <a href="/catalog"><img class="cart-back" src="/resources/images/back.jpg"></a>
     <#if allCarts?has_content>
         <#list allCarts as carts>
             <div class="cart-list">
@@ -14,19 +13,17 @@
                     <img class="cart-list-img" src="/resources/images/${carts.goods.getImage()!}">
                     <span class="cart-name">${carts.goods.getName()!}</span>
                     <span class="cart-price">${carts.goods.getPrice()!} руб.</span>
-                    <input class="cart-count btn btn-sm btn-primary" type="button" value="-">
-                    <input class="cart-count" form="text" value="${carts.count!}" style="height: 30px; width: 30px";">
-                    <input class="cart-count btn btn-sm btn-primary" type="button" value="+">
-                    <input class="cart-delete-input btn btn-mdl btn-primary" type="submit" value="Удалить">
+                    <a href="/cart"><input class="cart-count btn btn-sm btn-primary js_countLess" type="button" value="-" data-id="${carts.id}"></a>
+                    <input class="cart-count" form="text" value="${carts.count!}" style="height: 30px; width: 30px"/>
+                    <a href="/cart"><input class="cart-count btn btn-sm btn-primary js_countMore" type="button" value="+" data-id="${carts.id}"></a>
+                    <a href="/cart"><input class="cart-delete-input btn btn-mdl btn-primary js_cartRemove" type="submit" value="Удалить" data-id="${carts.id}"></a>
                 </form>
             </div>
         </#list>
         <#if totalAmount?has_content>
-            <div id="legend">
-                <legend class="">${totalAmount}</legend>
-            </div>
+            <span class="cart-amount">Итого: ${totalAmount}.00 руб.</span>
         </#if>
-        <input type="submit" value="Оформить заказ" class="cart-order btn-lg btn-success">
+        <a href="/order?totalAmount=${totalAmount}"><input type="submit" value="Оформить заказ" class="cart-order btn-lg btn-success"></a>
     <#else><p>Корзина пуста</p>
     </#if>
 </div>

@@ -38,5 +38,4 @@ public class RegisterController {
         System.out.println(registerFormBean);
         return "register/result";
     }
-
 }

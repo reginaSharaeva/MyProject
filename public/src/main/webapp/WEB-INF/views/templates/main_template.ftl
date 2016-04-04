@@ -1,4 +1,4 @@
-<#macro mainTemplate title="Toy Shop" styles=[] scripts=[] >
+<#macro mainTemplate title="Мир Игрушек" styles=[] scripts=[] >
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,7 @@
     <div class="container">
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li ><a href="/">Toy Shop</a></li>
+                <li ><a href="/">Мир Игрушек</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="/catalog">Каталог
                         <span class="caret"></span>

@@ -20,7 +20,7 @@ public class GoodController {
     @Autowired
     private GoodService goodService;
 
-    @RequestMapping(value = "/good", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String renderToyView() {
         return "good";
     }

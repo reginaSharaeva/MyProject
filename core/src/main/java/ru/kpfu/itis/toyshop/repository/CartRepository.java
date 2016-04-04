@@ -46,4 +46,17 @@ public class CartRepository {
                 .setLong("count", cart.getCount() + 1)
                 .setLong("id", cart.getId()).executeUpdate();
     }
+
+    @SuppressWarnings("unchecked")
+    public void doCountLess(Cart cart) {
+        sessionFactory.getCurrentSession().createQuery("update Cart c set c.count = :count where c.id = :id")
+                .setLong("count", cart.getCount() - 1)
+                .setLong("id", cart.getId()).executeUpdate();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void cartRemove(Long cartId) {
+        sessionFactory.getCurrentSession().createQuery("delete from Cart c where c.id = :id")
+                .setLong("id", cartId).executeUpdate();
+    }
 }

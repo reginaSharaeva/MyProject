@@ -1,6 +1,6 @@
 
 <#include "templates/main_template.ftl">
-<@mainTemplate title="Toy Shop" />
+<@mainTemplate title="Мир игрушек" />
 <#macro m_body>
 <div class="account-in">
     <div class="container">

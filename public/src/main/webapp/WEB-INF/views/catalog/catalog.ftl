@@ -2,9 +2,9 @@
 <#-- @ftlvariable name="allCategories" type="java.util.List<ru.kpfu.itis.toyshop.domain.Category>" -->
 
 <#include "../templates/main_template.ftl">
-<@mainTemplate title="Toy Shop" scripts=["js/my/catalog.js"] />
+<@mainTemplate title="Мир Игрушек" scripts=["js/my/catalog.js"] />
 <#macro m_body>
-<h1 class="starter-template">Каталог</h1>
+<h1 class="cart-h">Каталог</h1>
 <div class="main-block">
 
     <form class="search-catalog">

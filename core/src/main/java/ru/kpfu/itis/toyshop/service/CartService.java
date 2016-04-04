@@ -64,6 +64,22 @@ public class CartService {
         }
         return new BigDecimal(totalAmount);
     }
+
+    public Cart getCartById(Long cartId) {
+        return cartRepository.getCartById(cartId);
+    }
+
+    public void doCountLess(Cart cart) {
+        cartRepository.doCountLess(cart);
+    }
+
+    public void doCountMore(Cart cart) {
+        cartRepository.updateCount(cart);
+    }
+
+    public void goodRemove(Long cartId) {
+        cartRepository.cartRemove(cartId);
+    }
 }
 
 
