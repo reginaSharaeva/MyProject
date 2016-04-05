@@ -53,16 +53,13 @@ public class User {
     public User() {
     }
 
-    public User(String login, String hash_pass, String avatar, String name, boolean check, String key, List<Address> address, List<Order> orders, List<Cart> cart, String role) {
+    public User(String login, String hash_pass, String avatar, String name, boolean check, String key, String role) {
         this.login = login;
         this.hash_pass = hash_pass;
         this.avatar = avatar;
         this.name = name;
         this.check = check;
         this.key = key;
-        this.address = address;
-        this.orders = orders;
-        this.cart = cart;
         this.role = role;
     }
 

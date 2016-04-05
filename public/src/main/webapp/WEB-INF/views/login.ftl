@@ -9,7 +9,7 @@
         </br>
         </br>
         <div id="legend">
-            <legend class="">Регистрация</legend>
+            <legend class="">Вход</legend>
         </div>
         <div class="col-md-7 account-top">
             <#if error?has_content>

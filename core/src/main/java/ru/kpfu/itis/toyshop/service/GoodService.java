@@ -93,4 +93,14 @@ public class GoodService {
         }
         return allGoods;
     }
+
+    public List<Good> getGoodsForPage(List<Good> goods, int limit) {
+        List<Good> result = new ArrayList<>();
+        for (int i = 0; i < goods.size(); i++) {
+            if (i < limit) {
+                result.add(goods.get(i));
+            }
+        }
+        return result;
+    }
 }

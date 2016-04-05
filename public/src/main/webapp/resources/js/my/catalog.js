@@ -65,6 +65,21 @@ $(document).ready(function() {
             }
         });
     });
+    $(document).on('click', '.js_showMore', function () {
+        event.preventDefault();
+        var $this = $(this);
+        $.ajax({
+            type: 'GET',
+            url: '/catalog',
+            data: {"limit": $this.data('limit')},
+            success: function (data) {  // успешное завершение работы
+                $("#catalogContent").append(data);
+            },
+            error: function () {    // На сервере произошла ошибка
+                alert('Приносим извинения.<br/>На сервере произошла ошибка');
+            }
+        });
+    });
 });
 
 

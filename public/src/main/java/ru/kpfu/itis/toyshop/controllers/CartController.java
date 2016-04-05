@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.kpfu.itis.toyshop.aspects.annotations.IncludeMenuList;
 import ru.kpfu.itis.toyshop.domain.Cart;
 import ru.kpfu.itis.toyshop.service.CartService;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by Regina on 24.02.2016.
@@ -29,10 +31,12 @@ public class CartController {
      * Отображение корзины
      * @return
      */
+    @IncludeMenuList
     @RequestMapping(method = RequestMethod.GET)
     public String renderCart() {
-        request.setAttribute("allCarts", cartService.getAllCarts());
-        request.setAttribute("totalAmount",cartService.getTotalAmount(cartService.getAllCarts()));
+        List<Cart> carts = cartService.getAllCarts();
+        request.setAttribute("allCarts", carts);
+        request.setAttribute("totalAmount",cartService.getTotalAmount(carts));
         return "cartPage";
     }
 
@@ -49,34 +53,49 @@ public class CartController {
         return "ok";
     }
 
+    @IncludeMenuList
     @RequestMapping(value = "/less", method = RequestMethod.POST)
     public String countLess(@RequestParam(required = false) Long cartId) {
         Cart cart = cartService.getCartById(cartId);
+        List<Cart> carts = cartService.getAllCarts();
         if (cart.getCount() >= 1) {
             cartService.doCountLess(cart);
+            for (Cart c : carts) {
+                if (c.getId().equals(cartId)) {
+                    c.setCount(c.getCount() - 1);
+                }
+            }
         }
-        request.setAttribute("allCarts", cartService.getAllCarts());
-        request.setAttribute("totalAmount",cartService.getTotalAmount(cartService.getAllCarts()));
+        request.setAttribute("allCarts", carts);
+        request.setAttribute("totalAmount", cartService.getTotalAmount(carts));
         return "cartPage";
     }
 
+    @IncludeMenuList
     @RequestMapping(value = "/more", method = RequestMethod.POST)
     public String countMore(@RequestParam(required = false) Long cartId) {
         Cart cart = cartService.getCartById(cartId);
+        List<Cart> carts = cartService.getAllCarts();
         if (cart.getCount() < 20) {
             cartService.doCountMore(cart);
-
+            for (Cart c : carts) {
+                if (c.getId().equals(cartId)) {
+                    c.setCount(c.getCount() + 1);
+                }
+            }
         }
-        request.setAttribute("allCarts", cartService.getAllCarts());
-        request.setAttribute("totalAmount",cartService.getTotalAmount(cartService.getAllCarts()));
+        request.setAttribute("allCarts", carts);
+        request.setAttribute("totalAmount",cartService.getTotalAmount(carts));
         return "cartPage";
     }
 
+    @IncludeMenuList
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public String goodRemove(@RequestParam(required = false) Long cartId) {
         cartService.goodRemove(cartId);
-        request.setAttribute("allCarts", cartService.getAllCarts());
-        request.setAttribute("totalAmount",cartService.getTotalAmount(cartService.getAllCarts()));
+        List<Cart> carts = cartService.getAllCarts();
+        request.setAttribute("allCarts", carts);
+        request.setAttribute("totalAmount",cartService.getTotalAmount(carts));
         return "cartPage";
     }
 

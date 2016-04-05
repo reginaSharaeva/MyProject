@@ -1,12 +1,10 @@
 <#-- @ftlvariable name="user" type="ru.kpfu.itis.toyshop.domain.User" -->
 <#-- @ftlvariable name="allCategories" type="java.util.List<ru.kpfu.itis.toyshop.domain.Category>" -->
-
 <#include "../templates/main_template.ftl">
 <@mainTemplate title="Мир Игрушек" scripts=["js/my/catalog.js"] />
 <#macro m_body>
-<h1 class="cart-h">Каталог</h1>
-<div class="main-block">
-
+<div id="main-block-for-catalog">
+    <h1 class="cart-h">Каталог</h1>
     <form class="search-catalog">
         <div class="col-xs-2">
             <label for="categoryFilter">Выберите категорию:</label>
@@ -30,7 +28,7 @@
         <div class="col-xs-2">
             <label for="priceSort">Цены:</label>
             <select class="form-control input-sm" id="priceSort">
-                <option value="300">менее 300р.</option>
+                <op-tion value="300">менее 300р.</op-tion>
                 <option value="300,,500">от 300р. до 500р.</option>
                 <option value="500,,1000">от 500р. до 1000р.</option>
                 <option value="1000,,2000">от 1000р. до 2000р.</option>
@@ -43,7 +41,7 @@
     <br>
 
 <div id="catalogContent">
-    <#include "catalogContent.ftl" />
+    <#include "catalogContent.ftl"/>
 </div>
 </div>
 </#macro>

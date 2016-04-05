@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="listMenu" type="java.util.List<ru.kpfu.itis.toyshop.domain.Category>" -->
 <#macro mainTemplate title="Мир Игрушек" styles=[] scripts=[] >
 <!DOCTYPE html>
 <html>
@@ -36,10 +37,11 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="/catalog">Все товары</a></li>
-                        <li><a href="/catalog?id=40">Для самых маленьких</a></li>
-                        <li><a href="/catalog?id=33">Для девочек</a></li>
-                        <li><a href="/catalog?id=34">Для мальчиков</a></li>
+                        <#if listMenu?has_content>
+                            <#list listMenu as menu>
+                                <li><a href="/catalog?id=${menu.id}">${menu.alias}</a></li>
+                            </#list>
+                        </#if>
                     </ul>
                 </li>
             </ul>

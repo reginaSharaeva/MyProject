@@ -1,12 +1,9 @@
 package ru.kpfu.itis.toyshop.sender;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Random;
 /**
  * Created by Регина on 04.04.2016.
  */
-@Component
 public class KeyGenerate {
 
     private int size = 15;
