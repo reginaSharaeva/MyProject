@@ -1,4 +1,5 @@
 <#-- @ftlvariable name="user" type="ru.kpfu.itis.toyshop.domain.User" -->
+<#-- @ftlvariable name="categoryId" type="ru.kpfu.itis.toyshop.domain.User" -->
 <#-- @ftlvariable name="allCategories" type="java.util.List<ru.kpfu.itis.toyshop.domain.Category>" -->
 <#include "../templates/main_template.ftl">
 <@mainTemplate title="Мир Игрушек" scripts=["js/my/catalog.js"] />
@@ -8,7 +9,7 @@
     <form class="search-catalog">
         <div class="col-xs-2">
             <label for="categoryFilter">Выберите категорию:</label>
-            <select class="form-control input-sm" id="categoryFilter">
+            <select class="form-control input-sm" id="categoryFilter" data-id="${categoryId}">
                 <#if allCategories?has_content>
                     <#list allCategories as categories>
                         <option value="${categories.id}">${categories.alias}</option>
@@ -19,7 +20,7 @@
 
         <div class="col-xs-2">
             <label for="categorySort">Сортировать:</label>
-            <select class="form-control input-sm" id="categorySort">
+            <select class="form-control input-sm" id="categorySort" data-id="${categoryId}">
                 <option value="name,,asc">по названию</option>
                 <option value="price,,asc">по возрастанию цены</option>
                 <option value="price,,desc">по убыванию цены</option>
@@ -27,8 +28,8 @@
         </div>
         <div class="col-xs-2">
             <label for="priceSort">Цены:</label>
-            <select class="form-control input-sm" id="priceSort">
-                <op-tion value="300">менее 300р.</op-tion>
+            <select class="form-control input-sm" id="priceSort" data-id="${categoryId}">
+                <option value="300">менее 300р.</option>
                 <option value="300,,500">от 300р. до 500р.</option>
                 <option value="500,,1000">от 500р. до 1000р.</option>
                 <option value="1000,,2000">от 1000р. до 2000р.</option>

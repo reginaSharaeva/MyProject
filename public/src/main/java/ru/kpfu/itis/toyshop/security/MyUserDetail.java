@@ -85,7 +85,7 @@ public class MyUserDetail implements UserDetails {
         return user;
     }
 
-    public void setUserInfo(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

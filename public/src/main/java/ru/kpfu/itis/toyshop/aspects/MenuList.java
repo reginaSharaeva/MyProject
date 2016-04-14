@@ -30,6 +30,6 @@ public class MenuList {
 
     @Before("includeMenuListMethod()")
     public void includeMenuInfo() {
-        request.setAttribute("listMenu", categoryService.getCategoryByParent((long) 45));
+        request.setAttribute("listMenu", categoryService.getCategoryForMenu((long) 45));
     }
 }

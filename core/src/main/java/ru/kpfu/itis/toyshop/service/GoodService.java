@@ -25,20 +25,26 @@ public class GoodService {
 
     @Transactional
     /**
-     * Отображение всех товаров в каталоге
-     */
-    public List<Good> getAllGoods() {
-        return goodsRepository.getAllGoods();
-    }
-
-    /**
      * Отображение товаров по родительским категориям
      * @param id
      * @return
      */
+
     public List<Good> getAllGoods(Long id) {
-        List<Category> categories = categoryRepository.getCategoryByParent(id);
-        return goodsRepository.getAllGoods(categories);
+        List<Category> categoryList;
+        if (id == 45L) {
+            List<Category> categories = categoryRepository.getCategoryByParent(id);
+            categoryList = new ArrayList<>();
+            for (Category category: categories) {
+                List<Category> cats = categoryRepository.getCategoryByParent(category.getId());
+                for (int i = 0; i < cats.size(); i++) {
+                    categoryList.add(cats.get(i));
+                }
+            }
+        } else {
+            categoryList = categoryRepository.getCategoryByParent(id);
+        }
+        return goodsRepository.getAllGoods(categoryList);
     }
 
     /**
@@ -94,10 +100,10 @@ public class GoodService {
         return allGoods;
     }
 
-    public List<Good> getGoodsForPage(List<Good> goods, int limit) {
+    public List<Good> getGoodsForPage(List<Good> goods, int page, int limit) {
         List<Good> result = new ArrayList<>();
         for (int i = 0; i < goods.size(); i++) {
-            if (i < limit) {
+            if (i >= page && i < limit) {
                 result.add(goods.get(i));
             }
         }

@@ -1,7 +1,10 @@
 <#-- @ftlvariable name="allGoods" type="java.util.List<ru.kpfu.itis.toyshop.domain.Good>" -->
+<#-- @ftlvariable name="allGoodsForPage" type="java.util.List<ru.kpfu.itis.toyshop.domain.Good>" -->
 <#-- @ftlvariable name="goodInCart" type="boolean" -->
-<#-- @ftlvariable name="limit" type="Integer" -->
+<#-- @ftlvariable name="end" type="Integer" -->
+<#-- @ftlvariable name="start" type="Integer" -->
 <#-- @ftlvariable name="goodsCount" type="Integer" -->
+<#-- @ftlvariable name="categoryId" type="Long" -->
 <#if allGoods?has_content>
     <#list allGoods as goods>
     <div class="toy">
@@ -20,8 +23,8 @@
         </#if>
     </div>
     </#list>
-    <#if limit < goodsCount>
-    <a href="/catalog?id=${id}"><input type="submit" value="Показать еще" class="btn btn btn-lg btn-success js_showMore" data-limit="${limit+10}"></a>
+    <#if end < goodsCount>
+    <input type="submit" value="Показать еще" class="btn btn btn-lg btn-success js_showMore" data-id="${categoryId} "data-start="${start+10}" data-end="${end+10}">
     </#if>
 <#else>
 <p>Нет товаров</p>

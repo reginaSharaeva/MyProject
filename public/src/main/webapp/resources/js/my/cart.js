@@ -10,7 +10,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: '/cart/less',
-            data: {"cartId": $this.data('id')},
+            data: {"goodId": $this.data('id')},
             success: function (data) {  // успешное завершение работы
                 $("#main-block").empty().append(data);
             },
@@ -22,11 +22,11 @@ $(document).ready(function() {
 
     $(document).on('click', '.js_countMore', function () {
         event.preventDefault();
-        var $this = $(this);
+        alert($this.data('id'));
         $.ajax({
             type: 'POST',
             url: '/cart/more',
-            data: {"cartId": $this.data('id')},
+            data: {"goodId": $this.data('id')},
             success: function (data) {  // успешное завершение работы
                 $("#main-block").empty().append(data);
             },
@@ -42,7 +42,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: '/cart/remove',
-            data: {"cartId": $this.data('id')},
+            data: {"goodId": $this.data('id')},
             success: function (data) {  // успешное завершение работы
                 $("#main-block").empty().append(data);
             },

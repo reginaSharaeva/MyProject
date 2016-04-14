@@ -22,22 +22,20 @@ public class CategoryService {
      * @return
      */
     public List<Category> getCategoryByParent(Long parent) {
+        if (parent == 45L) {
+            List<Category> categories = categoryRepository.getCategoryByParent(parent);
+            List<Long> par_id = new ArrayList<>();
+            for (int i = 0; i < categories.size(); i++) {
+                if (categories.get(i).getId() != parent) {
+                    par_id.add(categories.get(i).getId());
+                }
+            }
+            return categoryRepository.getCategoryByParent(par_id);
+        }
         return categoryRepository.getCategoryByParent(parent);
     }
 
-    /**
-     * Отображение всех дочерних категорий
-     * @return
-     */
-    public List<Category> getCategoryByParent() {
-        List<Category> parents = categoryRepository.getCategoryByParent(45L);
-        List<Long> par_id = new ArrayList<>();
-        for (int i = 0; i < parents.size(); i++) {
-            if (parents.get(i).getId() != 45L) {
-                par_id.add(parents.get(i).getId());
-            }
-        }
-        return categoryRepository.getCategoryByParent(par_id);
+    public List<Category> getCategoryForMenu(Long parent) {
+        return categoryRepository.getCategoryByParent(parent);
     }
-
 }

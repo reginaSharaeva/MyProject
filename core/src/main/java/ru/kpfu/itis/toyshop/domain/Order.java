@@ -23,7 +23,7 @@ public class Order {
     private BigDecimal total_sum;
 
     @Column(name = "total_count")
-    private int total_count;
+    private Long total_count;
 
     @Column(name = "status")
     private String status;
@@ -48,6 +48,20 @@ public class Order {
             mappedBy="orders")
     private List<Order_Good> order_goods;
 
+    public Order() {
+    }
+
+    public Order(Date create_time, BigDecimal total_sum, Long total_count, String status, String pay_type, Address address, User users, List<Order_Good> order_goods) {
+        this.create_time = create_time;
+        this.total_sum = total_sum;
+        this.total_count = total_count;
+        this.status = status;
+        this.pay_type = pay_type;
+        this.address = address;
+        this.users = users;
+        this.order_goods = order_goods;
+    }
+
     public Long getId() {
         return id;
     }
@@ -60,7 +74,7 @@ public class Order {
         return total_sum;
     }
 
-    public int getTotal_count() {
+    public Long getTotal_count() {
         return total_count;
     }
 

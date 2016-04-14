@@ -36,27 +36,37 @@ public class CartRepository {
     }
 
     @SuppressWarnings("unchecked")
+    public List<Cart> getCartByUser(User user) {
+        return sessionFactory.getCurrentSession().createCriteria(Cart.class).add(Restrictions.eq("users", user)).list();
+    }
+
+    @SuppressWarnings("unchecked")
     public void saveCart(Good good, User user) {
         sessionFactory.getCurrentSession().save(new Cart(good, user, (long) 1));
     }
 
     @SuppressWarnings("unchecked")
+    public void saveCartByCount(Good good, User user, Long count) {
+        sessionFactory.getCurrentSession().save(new Cart(good, user, count));
+    }
+
+    @SuppressWarnings("unchecked")
     public void updateCount(Cart cart) {
-        sessionFactory.getCurrentSession().createQuery("update Cart c set c.count = :count where c.id = :id")
+        sessionFactory.getCurrentSession().createQuery("update Cart c set c.count = :count where c.goods.id = :id")
                 .setLong("count", cart.getCount() + 1)
-                .setLong("id", cart.getId()).executeUpdate();
+                .setLong("id", cart.getGoods().getId()).executeUpdate();
     }
 
     @SuppressWarnings("unchecked")
     public void doCountLess(Cart cart) {
-        sessionFactory.getCurrentSession().createQuery("update Cart c set c.count = :count where c.id = :id")
+        sessionFactory.getCurrentSession().createQuery("update Cart c set c.count = :count where c.goods.id = :id")
                 .setLong("count", cart.getCount() - 1)
-                .setLong("id", cart.getId()).executeUpdate();
+                .setLong("id", cart.getGoods().getId()).executeUpdate();
     }
 
     @SuppressWarnings("unchecked")
-    public void cartRemove(Long cartId) {
-        sessionFactory.getCurrentSession().createQuery("delete from Cart c where c.id = :id")
-                .setLong("id", cartId).executeUpdate();
+    public void cartRemove(Cart cart) {
+        sessionFactory.getCurrentSession().createQuery("delete from Cart c where c.goods.id = :id")
+                .setLong("id", cart.getGoods().getId()).executeUpdate();
     }
 }

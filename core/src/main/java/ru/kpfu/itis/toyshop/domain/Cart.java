@@ -37,6 +37,11 @@ public class Cart {
         this.count = count;
     }
 
+    public Cart(Long count, Good goods) {
+        this.count = count;
+        this.goods = goods;
+    }
+
     public Good getGoods() {
         return goods;
     }

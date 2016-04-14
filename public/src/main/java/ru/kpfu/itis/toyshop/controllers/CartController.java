@@ -8,9 +8,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.kpfu.itis.toyshop.aspects.annotations.IncludeMenuList;
 import ru.kpfu.itis.toyshop.domain.Cart;
+import ru.kpfu.itis.toyshop.domain.Good;
+import ru.kpfu.itis.toyshop.domain.User;
 import ru.kpfu.itis.toyshop.service.CartService;
+import ru.kpfu.itis.toyshop.service.GoodService;
+import ru.kpfu.itis.toyshop.service.UserService;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Regina on 24.02.2016.
@@ -20,23 +28,34 @@ import java.util.List;
 public class CartController {
 
     @Autowired
-    private HttpServletRequest request;
+    private CartService cartService;
 
     @Autowired
-    private CartService cartService;
+    private UserService userService;
+
+    @Autowired
+    private HttpSession session;
 
 
     /**
-     *
      * Отображение корзины
+     *
      * @return
      */
     @IncludeMenuList
     @RequestMapping(method = RequestMethod.GET)
     public String renderCart() {
-        List<Cart> carts = cartService.getAllCarts();
-        request.setAttribute("allCarts", carts);
-        request.setAttribute("totalAmount",cartService.getTotalAmount(carts));
+        List<Cart> carts;
+        String login = (String) session.getAttribute("userLogin");
+        if (login == null) {
+            carts = (List<Cart>) session.getAttribute("allCarts");
+        } else {
+            User user = userService.getUserByLogin(login);
+            carts = cartService.getCartByUser(user);
+        }
+        session.setAttribute("totalAmount", cartService.getTotalAmount(carts));
+        session.setAttribute("totalCount", cartService.getTotalCount(carts));
+        session.setAttribute("allCarts", carts);
         return "cartPage";
     }
 
@@ -48,55 +67,99 @@ public class CartController {
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addInCart(Long goodId) {
-        cartService.addInCart(goodId, (long) 1);
-        request.setAttribute("goodInCart", true);
+        List<Cart> carts;
+        String login = (String) session.getAttribute("userLogin");
+        if (login == null) {
+            carts = (List<Cart>) session.getAttribute("allCarts");
+            carts = cartService.addInCart(carts, goodId);
+            session.setAttribute("allCarts", carts);
+        } else {
+            User user = userService.getUserByLogin(login);
+            cartService.addInCart(goodId, user);
+        }
         return "ok";
     }
 
     @IncludeMenuList
     @RequestMapping(value = "/less", method = RequestMethod.POST)
-    public String countLess(@RequestParam(required = false) Long cartId) {
-        Cart cart = cartService.getCartById(cartId);
-        List<Cart> carts = cartService.getAllCarts();
-        if (cart.getCount() >= 1) {
-            cartService.doCountLess(cart);
-            for (Cart c : carts) {
-                if (c.getId().equals(cartId)) {
-                    c.setCount(c.getCount() - 1);
+    public String countLess(Long goodId) {
+        List<Cart> carts;
+        Cart cart;
+        String login = (String) session.getAttribute("userLogin");
+        if (login == null) {
+            carts = (List<Cart>) session.getAttribute("allCarts");
+            cart = cartService.getCartByGood(carts, goodId);
+            if (cart.getCount() >= 1) {
+                carts = cartService.doCountLess(carts, cart);
+            }
+        } else {
+            User user = userService.getUserByLogin(login);
+            carts = cartService.getCartByUser(user);
+            cart = cartService.getCartByUserAndGood(user, goodId);
+            if (cart.getCount() >= 1) {
+                cartService.doCountLess(cart);
+                for (Cart c : carts) {
+                    if (c.equals(cart)) {
+                        c.setCount(c.getCount() - 1);
+                    }
                 }
             }
+
         }
-        request.setAttribute("allCarts", carts);
-        request.setAttribute("totalAmount", cartService.getTotalAmount(carts));
+        session.setAttribute("allCarts", carts);
+        session.setAttribute("totalAmount", cartService.getTotalAmount(carts));
+        session.setAttribute("totalCount", cartService.getTotalCount(carts));
         return "cartPage";
     }
 
     @IncludeMenuList
     @RequestMapping(value = "/more", method = RequestMethod.POST)
-    public String countMore(@RequestParam(required = false) Long cartId) {
-        Cart cart = cartService.getCartById(cartId);
-        List<Cart> carts = cartService.getAllCarts();
-        if (cart.getCount() < 20) {
-            cartService.doCountMore(cart);
-            for (Cart c : carts) {
-                if (c.getId().equals(cartId)) {
-                    c.setCount(c.getCount() + 1);
+    public String countMore(Long goodId) {
+        List<Cart> carts;
+        Cart cart;
+        String login = (String) session.getAttribute("userLogin");
+        if (login == null) {
+            carts = (List<Cart>) session.getAttribute("allCarts");
+            cart = cartService.getCartByGood(carts, goodId);
+            if (cart.getCount() < 12) {
+                carts = cartService.doCountMore(carts, cart);
+            }
+        } else {
+            User user = userService.getUserByLogin(login);
+            carts = cartService.getCartByUser(user);
+            cart = cartService.getCartByUserAndGood(user, goodId);
+            if (cart.getCount() < 12) {
+                cartService.doCountMore(cart);
+                for (Cart c : carts) {
+                    if (c.equals(cart)) {
+                        c.setCount(c.getCount() + 1);
+                    }
                 }
             }
+
         }
-        request.setAttribute("allCarts", carts);
-        request.setAttribute("totalAmount",cartService.getTotalAmount(carts));
+        session.setAttribute("allCarts", carts);
+        session.setAttribute("totalAmount", cartService.getTotalAmount(carts));
+        session.setAttribute("totalCount", cartService.getTotalCount(carts));
         return "cartPage";
     }
 
     @IncludeMenuList
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public String goodRemove(@RequestParam(required = false) Long cartId) {
-        cartService.goodRemove(cartId);
-        List<Cart> carts = cartService.getAllCarts();
-        request.setAttribute("allCarts", carts);
-        request.setAttribute("totalAmount",cartService.getTotalAmount(carts));
+    public String goodRemove(Long goodId) {
+        List<Cart> carts;
+        String login = (String) session.getAttribute("userLogin");
+        if (login == null) {
+            carts = (List<Cart>) session.getAttribute("allCarts");
+            carts = cartService.goodRemoveByGood(carts, goodId);
+        } else {
+            User user = userService.getUserByLogin(login);
+            cartService.goodRemoveByUserAndGood(user, goodId);
+            carts = cartService.getCartByUser(user);
+        }
+        session.setAttribute("totalAmount", cartService.getTotalAmount(carts));
+        session.setAttribute("totalCount", cartService.getTotalCount(carts));
+        session.setAttribute("allCarts", carts);
         return "cartPage";
     }
-
 }

@@ -28,15 +28,23 @@ public class UserRepository {
 
     @SuppressWarnings("unchecked")
     public void addUser(String name, String mail, String hash_pass, String key) {
-        sessionFactory.getCurrentSession().save(new User(mail, hash_pass, null, name, false, key, "ROL_USER"));
+        sessionFactory.getCurrentSession().save(new User(mail, hash_pass, null, name, false, key, "ROLE_USER"));
     }
 
     @SuppressWarnings("unchecked")
     public User getUserByLogin(String login) {return (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("login", login)).uniqueResult();}
 
+
     @SuppressWarnings("unchecked")
     public User getUserByKey(String key) {
         return (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("key", key)).uniqueResult();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void setTrue(Long userId) {
+        sessionFactory.getCurrentSession().createQuery("update User u set u.check = :check where u.id = :id")
+                .setBoolean("check", true)
+                .setLong("id", userId).executeUpdate();
     }
 }
 

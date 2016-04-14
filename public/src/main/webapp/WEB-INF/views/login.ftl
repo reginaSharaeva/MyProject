@@ -18,7 +18,7 @@
             <form name="authForm" id="authForm" action="/j_spring_security_check" method="post">
                 <div>
                     <span>Email</span>
-                    <input type="text" name="j_username" />
+                    <input type="text" name="j_username" id="login"/>
                 </div>
                 <div>
                     <span class="pass">Password</span>
@@ -26,12 +26,16 @@
                 </div>
                 <div>
                     </br>
-                    <input id="remember_me" name="_spring_security_remember_me" type="checkbox"/>
+                    <input id="remember_me" name="j_spring_security_remember_me" type="checkbox"/>
                     <label for="remember_me" class="inline">Запомнить меня</label>
                 </div>
-                <input type="submit" value="Login" class="btn btn btn-lg btn-success"/>
+                <a href="/"><input type="submit" value="Вход" class="btn btn btn-lg btn-success"/></a>
                 <a href="/reg" style="margin-left: 15px;">Зарегистрироваться</a>
             </form>
+            </br>
+            <#if orders?has_content>
+                <a href="/cart">Обратно в корзину</a>
+            </#if>
         </div>
         <div class="col-md-5 left-account "></div>
         <div class="clearfix"> </div>

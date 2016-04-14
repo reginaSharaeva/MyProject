@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.kpfu.itis.toyshop.aspects.annotations.IncludeMenuList;
+import ru.kpfu.itis.toyshop.domain.Category;
 import ru.kpfu.itis.toyshop.domain.Good;
 import ru.kpfu.itis.toyshop.service.CategoryService;
 import ru.kpfu.itis.toyshop.service.GoodService;
@@ -21,9 +22,6 @@ import java.util.List;
 public class CatalogController {
 
     @Autowired
-    private HttpSession session;
-
-    @Autowired
     private GoodService goodService;
 
     @Autowired
@@ -32,7 +30,9 @@ public class CatalogController {
     @Autowired
     private HttpServletRequest request;
 
-    private Integer LIMIT_FOR_GOOD = 10;
+    private Integer END_FOR_GOOD = 10;
+
+    private Integer START_FOR_GOOD = 0;
 
     /**
      * Отображение каталога с главной страницы
@@ -41,68 +41,61 @@ public class CatalogController {
      */
     @IncludeMenuList
     @RequestMapping(method = RequestMethod.GET)
-    public String renderCatalog(Integer limit) {
-        if (limit == null) {
-            limit = LIMIT_FOR_GOOD;
+    public String renderCatalog(@RequestParam(value="id", required = false) Long id, Integer start, Integer end) {
+        if (start == null) {
+            start = START_FOR_GOOD;
         }
-        request.setAttribute("limit", limit);
-        List<Good> goods;
-        if (request.getParameter("id").equals("45")) {
-            goods = goodService.getAllGoods();
-            session.setAttribute("allGoods", goodService.getGoodsForPage(goods, limit));
-            session.setAttribute("goodsCount", goods.size());
-            session.setAttribute("allGoodsByCategory", goods);
-            request.setAttribute("allCategories", categoryService.getCategoryByParent());
-            request.setAttribute("id", 45L);
-        } else {
-            Long id = Long.parseLong(request.getParameter("id"));
-            goods = goodService.getAllGoods(id);
-            session.setAttribute("allGoods", goodService.getGoodsForPage(goods, limit));
-            session.setAttribute("allGoodsByCategory", goods);
-            request.setAttribute("allCategories", categoryService.getCategoryByParent(id));
+        if (end == null) {
+            end = END_FOR_GOOD;
         }
+        List<Good> goods = goodService.getAllGoods(id);
+        request.setAttribute("allGoods", goodService.getGoodsForPage(goods, start, end));
+        request.setAttribute("goodsCount", goods.size());
+        request.setAttribute("allCategories", categoryService.getCategoryByParent(id));
+        request.setAttribute("categoryId", id);
+        request.setAttribute("end", end);
+        request.setAttribute("start", start);
         return "catalog/catalog";
     }
 
+    @RequestMapping(value = "/showmore", method = RequestMethod.POST)
+    public String addOnPage(Integer start, Integer end, Long categoryId) {
+        List<Good> goods = goodService.getAllGoods(categoryId);
+        request.setAttribute("allGoods", goodService.getGoodsForPage(goods, start, end));
+        request.setAttribute("categoryId", categoryId);
+        request.setAttribute("goodsCount", goods.size());
+        request.setAttribute("end", end + 10);
+        request.setAttribute("start", start + 10);
+        return "catalog/catalogContent";
+    }
+
     /**
-     * Обработка фильтра по категории
+     * Обработка фильтра по категории, сортировке, цене
      */
-    @IncludeMenuList
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
-    public String catalogFilter(@RequestParam(required = false) Long categoryId, Integer limit) {
-        if (limit == null) {
-            limit = LIMIT_FOR_GOOD;
+    public String catalogFilter(Long categoryId, Long catId, String sort, String prices, Integer start, Integer end) {
+        if (start == null) {
+            start = START_FOR_GOOD;
         }
-        request.setAttribute("limit", limit);
-
-        List<Good> goods = goodService.getAllGoodsByCategory(categoryId);
-        session.setAttribute("allGoods", goodService.getGoodsForPage(goods, limit));
-        session.setAttribute("goodsCount", goods.size());
-        session.setAttribute("allGoodsByCategory", goods);
-        return "catalog/catalogContent";
-    }
-
-    @IncludeMenuList
-    @RequestMapping(value = "/sorter", method = RequestMethod.POST)
-    public String catalogSort(@RequestParam(required = false) String sort) {
-        List<Good> allGoods = (List<Good>) session.getAttribute("allGoods");
-        Object goods = goodService.getAllGoodsBySort(sort, allGoods);
-        session.setAttribute("allGoods", goods);
-        session.setAttribute("allGoodsByCategory", goods);
-        return "catalog/catalogContent";
-    }
-
-    @IncludeMenuList
-    @RequestMapping(value = "/prices", method = RequestMethod.POST)
-    public String priceSort(@RequestParam(required = false) String prices, Integer limit) {
-        if (limit == null) {
-            limit = LIMIT_FOR_GOOD;
+        if (end == null) {
+            end = END_FOR_GOOD;
         }
-        request.setAttribute("limit", limit);
-        List<Good> allGoods = (List<Good>) session.getAttribute("allGoodsByCategory");
-        List<Good> goods = goodService.getAllGoodsByPrice(prices, allGoods);
-        session.setAttribute("allGoods", goodService.getGoodsForPage(goods, limit));
-        session.setAttribute("goodsCount", goods.size());
+        List<Good> goods = goodService.getAllGoods(categoryId);
+        request.setAttribute("categoryId", categoryId);
+        if (catId != null) {
+            goods = goodService.getAllGoodsByCategory(catId);
+            request.setAttribute("categoryId", catId);
+        }
+        if (sort != null) {
+            goods = goodService.getAllGoodsBySort(sort, goods);
+        }
+        if (prices != null) {
+            goods = goodService.getAllGoodsByPrice(prices, goods);
+        }
+        request.setAttribute("start", start);
+        request.setAttribute("end", end);
+        request.setAttribute("allGoods", goodService.getGoodsForPage(goods, start, end));
+        request.setAttribute("goodsCount", goods.size());
         return "catalog/catalogContent";
     }
 }

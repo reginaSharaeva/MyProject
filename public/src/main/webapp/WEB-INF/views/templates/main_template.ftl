@@ -1,4 +1,5 @@
 <#-- @ftlvariable name="listMenu" type="java.util.List<ru.kpfu.itis.toyshop.domain.Category>" -->
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"]>
 <#macro mainTemplate title="Мир Игрушек" styles=[] scripts=[] >
 <!DOCTYPE html>
 <html>
@@ -45,11 +46,33 @@
                     </ul>
                 </li>
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/reg"><span class="user"></span> Регистрация</a></li>
-                <li><a href="/login"><span class="log-in"></span> Вход</a></li>
+                <@sec.authorize ifAnyGranted="ROLE_ANONYMOUS">
+                    <li><a class="login" href="/login">Вход</a>|</li>
+                    <li><a class="login" href="/reg">Регистрация</a></li>
+                </@sec.authorize>
+                <#-- Если уже авторизован, то ссылки в личный кабинет и на выход -->
+                <@sec.authorize access="isAuthenticated()">
+                    <a class="login" href="/cabinet">
+                        <i class="user"> </i>
+                        <li class="user_desc">
+                        <#-- principal - это фактически экземпляр объекта MyUserDetail -->
+                            <@sec.authentication property="principal.username" />
+                        <#--<@sec.authentication property="principal.userInfo.fio" />-->
+                        </li>
+                    </a>
+                    <a class="login" href="/logout">
+                        <li class="user_desc" style="padding-left: 10px;">Выйти</li>
+                    </a>
+                </@sec.authorize>
                 <li><a href="/cart"> Корзина</a></li>
+
+                <#--<li><a href="/reg"><span class="user"></span> Регистрация</a></li>-->
+                <#--<#if enter?has_content>-->
+                    <#--<li><a href="/login"><span class="log-in"></span> Выход</a></li>-->
+                <#--<#else>-->
+                    <#--<li><a href="/login"><span class="log-in"></span> Вход</a></li>-->
+                <#--</#if>-->
             </ul>
         </div>
     </div>

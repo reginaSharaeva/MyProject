@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.toyshop.aspects.annotations.IncludeMenuList;
-import ru.kpfu.itis.toyshop.form.RegisterFormBean;
+import ru.kpfu.itis.toyshop.domain.User;
+import ru.kpfu.itis.toyshop.form.RegistrationFormBean;
 import ru.kpfu.itis.toyshop.sender.KeyGenerate;
 import ru.kpfu.itis.toyshop.sender.Mailing;
 import ru.kpfu.itis.toyshop.service.UserService;
@@ -20,7 +21,7 @@ import javax.validation.Valid;
  */
 @Controller
 @RequestMapping("/reg")
-public class RegisterController {
+public class RegistrationController {
 
     @Autowired
     private UserService userService;
@@ -34,26 +35,26 @@ public class RegisterController {
     @IncludeMenuList
     @RequestMapping(method = RequestMethod.GET)
     public String renderRegistrationPage() {
-        request.setAttribute(ATTR_REGISTRATION_FORM, new RegisterFormBean());
-        return "register/registerPage";
+        request.setAttribute(ATTR_REGISTRATION_FORM, new RegistrationFormBean());
+        return "registration/registrationPage";
     }
 
     @IncludeMenuList
     @RequestMapping(method = RequestMethod.POST)
     public String registrationForm(
-            @Valid @ModelAttribute(ATTR_REGISTRATION_FORM) RegisterFormBean registerFormBean,
+            @Valid @ModelAttribute(ATTR_REGISTRATION_FORM) RegistrationFormBean registrationFormBean,
             BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "register/registerPage";
+        if (bindingResult.hasErrors() || !userService.checkUser(registrationFormBean.getEmail())) {
+            request.setAttribute("contains", true);
+            return "registration/registrationPage";
         }
         KeyGenerate keyGenerate = new KeyGenerate();
         String key = keyGenerate.generate();
-        while (!userService.checkKey(key)) {
-            key = keyGenerate.generate();
-        }
-        userService.addUser(registerFormBean.getName(), registerFormBean.getEmail(), registerFormBean.getPassword(), key);
+        userService.addUser(registrationFormBean.getName(), registrationFormBean.getEmail(), registrationFormBean.getPassword(), key);
         Mailing mailing = new Mailing();
-        mailing.sendMail(registerFormBean.getEmail(), "Регистрация", "Для регистрации пройдите по ссылке http://www.localhost:8081?key=" + key);
-        return "register/result";
+        User user = userService.getUserByLogin(registrationFormBean.getEmail());
+        mailing.sendMail(registrationFormBean.getEmail(), "Registration", "http://www.localhost:8081/?id=" + user.getId() + "&key=" + key);
+        request.setAttribute("contains", null);
+        return "registration/result";
     }
 }

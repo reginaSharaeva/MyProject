@@ -20,11 +20,6 @@ public class GoodRepository {
     private SessionFactory sessionFactory;
 
     @SuppressWarnings("unchecked")
-    public List<Good> getAllGoods() {
-        return sessionFactory.getCurrentSession().createCriteria(Good.class).list();
-    }
-
-    @SuppressWarnings("unchecked")
     public List<Good> getAllGoods(List<Category> categories) {
         return sessionFactory.getCurrentSession().createCriteria(Good.class)
                 .add(Restrictions.in("category", categories)).list();

@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="contains" type="boolean" -->
 <#assign form=JspTaglibs["http://www.springframework.org/tags/form"]>
 <#include "../templates/main_template.ftl">
 <@mainTemplate title="Мир Игрушек" />
@@ -46,6 +47,10 @@
                 <div class="clearfix"> </div>
             </div>
         </@form.form>
+        </br>
+        <#if contains?has_content>
+            <span style="color: red"> Возможно Вы уже регистрировались по этому E-Mail</span>
+        </#if>
     </div>
 </div>
 </#macro>

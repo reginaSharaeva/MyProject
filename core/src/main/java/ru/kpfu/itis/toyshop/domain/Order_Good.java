@@ -27,16 +27,22 @@ public class Order_Good implements Serializable {
     private Order orders;
 
     @Column(name = "count")
-    private int count;
+    private Long count;
 
     public Order_Good() {
     }
 
-    public Order_Good(Good goods, Order orders, int count) {
+    public Order_Good(Good goods, Order orders, Long count) {
         this.goods = goods;
         this.orders = orders;
         this.count = count;
     }
+
+    public Order_Good(Good goods, Long count) {
+        this.goods = goods;
+        this.count = count;
+    }
+
 
     public Good getGoods() {
         return goods;
@@ -46,7 +52,7 @@ public class Order_Good implements Serializable {
         return orders;
     }
 
-    public int getCount() {
+    public Long getCount() {
         return count;
     }
 }

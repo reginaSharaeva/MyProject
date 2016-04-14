@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
  * Created by Regina on 24.03.2016.
  */
 
-public class RegisterFormBean {
+public class RegistrationFormBean {
 
     @NotEmpty(message = "Поле обязательно для заполнения")
     private String name;
@@ -17,16 +17,16 @@ public class RegisterFormBean {
             message="Неверный формат email")
     private String email;
 
-    @Size(min=6, max=20, message="Пароль должен быть от 6 до 20 символов")
+    @Size(min=6, max=20, message="Пароль должен быть от 7 до 20 символов")
     private String password;
 
-    @Size(min=6, max=20, message="Пароль должен быть от 6 до 20 символов")
+    @Size(min=6, max=20, message="Пароль должен быть от 7 до 20 символов")
     private String confirmPassword;
 
-    public RegisterFormBean() {
+    public RegistrationFormBean() {
     }
 
-    public RegisterFormBean(String name, String email, String password, String confirmPassword) {
+    public RegistrationFormBean(String name, String email, String password, String confirmPassword) {
         this.name = name;
         this.email = email;
         this.password = password;

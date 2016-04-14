@@ -57,6 +57,16 @@ public class Address {
         this.orders = orders;
     }
 
+    public Address(String city, String street, int house, int flat, int index, String area, User users) {
+        this.city = city;
+        this.street = street;
+        this.house = house;
+        this.flat = flat;
+        this.index = index;
+        this.area = area;
+        this.users = users;
+    }
+
     public Long getId() {
         return id;
     }

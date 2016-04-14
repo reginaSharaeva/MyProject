@@ -9,9 +9,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 @Component
 public class HashMake {
 
-    public String md5Apache(String st) {
-        byte[] md5Hex = DigestUtils.md5(st);
-        return String.valueOf(md5Hex);
+    public String md5Apache(String str) {
+        return DigestUtils.md5Hex(str);
     }
 }
 

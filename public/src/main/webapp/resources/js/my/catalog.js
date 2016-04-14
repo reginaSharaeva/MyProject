@@ -9,7 +9,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: '/catalog/filter',
-            data: {"categoryId": $this.val()},
+            data: {"catId": $this.val(), "categoryId": $this.data('id')},
             success: function (data) {  // успешное завершение работы
                 console.log(data);
                 $("#catalogContent").empty().append(data);
@@ -20,12 +20,13 @@ $(document).ready(function() {
         });
 
     });
+
     $('#categorySort').on('change', function() {
         var $this = $(this);
         $.ajax({
             type: 'POST',
-            url: '/catalog/sorter',
-            data: {"sort": $this.val()},
+            url: '/catalog/filter',
+            data: {"sort": $this.val(), "categoryId": $this.data('id')},
             success: function (data) {  // успешное завершение работы
                 console.log(data);
                 $("#catalogContent").empty().append(data);
@@ -39,8 +40,8 @@ $(document).ready(function() {
         var $this = $(this);
         $.ajax({
             type: 'POST',
-            url: '/catalog/prices',
-            data: {"prices": $this.val()},
+            url: '/catalog/filter',
+            data: {"prices": $this.val(), "categoryId": $this.data('id')},
             success: function (data) {  // успешное завершение работы
                 console.log(data);
                 $("#catalogContent").empty().append(data);
@@ -69,10 +70,11 @@ $(document).ready(function() {
         event.preventDefault();
         var $this = $(this);
         $.ajax({
-            type: 'GET',
-            url: '/catalog',
-            data: {"limit": $this.data('limit')},
+            type: 'POST',
+            url: '/catalog/showmore',
+            data: {"categoryId": $this.data('id'), "start": $this.data('start'),"end": $this.data('end')},
             success: function (data) {  // успешное завершение работы
+                $this.hide();
                 $("#catalogContent").append(data);
             },
             error: function () {    // На сервере произошла ошибка

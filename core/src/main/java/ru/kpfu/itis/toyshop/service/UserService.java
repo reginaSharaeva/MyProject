@@ -32,13 +32,21 @@ public class UserService {
         return userRepository.getUserByLogin(login);
     }
 
-    public boolean checkKey(String key) {
-        User user = userRepository.getUserByKey(key);
+    public User getUserById(Long id) {
+        return userRepository.getUserById(id);
+    }
+
+    public boolean checkUser(String mail) {
+        User user = userRepository.getUserByLogin(mail);
         if (user == null) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public void changeCheck(Long userId) {
+        userRepository.setTrue(userId);
     }
 }
 
