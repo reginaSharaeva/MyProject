@@ -28,7 +28,7 @@ public class MainController extends BaseController {
     private HttpSession session;
 
     @IncludeMenuList
-    @RequestMapping( value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String renderMainPage(@RequestParam(value = "id", required = false) Long id,
                                  @RequestParam(value = "key", required = false) String key) {
         if (key != null && id != null) {

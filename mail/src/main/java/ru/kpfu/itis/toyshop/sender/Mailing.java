@@ -5,6 +5,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.io.InputStream;
+import javax.mail.internet.MimeUtility;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
@@ -44,16 +45,14 @@ public class Mailing {
             message.setFrom(new InternetAddress(username));
 // multiple recipients           InternetAddress[] address = {new InternetAddress(to)};
 //                               msg.setRecipients(Message.RecipientType.TO, address);
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(toEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             message.setSubject(subject);
             try {
-                message.setText(new String(text.getBytes("UTF-8")));
+                message.setText(MimeUtility.decodeText(text));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
             Transport.send(message);
-
             return status = true;
         } catch (MessagingException e) {
             return status = false;

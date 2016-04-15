@@ -22,7 +22,7 @@ $(document).ready(function() {
 
     $(document).on('click', '.js_countMore', function () {
         event.preventDefault();
-        alert($this.data('id'));
+        var $this = $(this);
         $.ajax({
             type: 'POST',
             url: '/cart/more',

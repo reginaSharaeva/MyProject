@@ -44,7 +44,8 @@ public class RegistrationController {
     public String registrationForm(
             @Valid @ModelAttribute(ATTR_REGISTRATION_FORM) RegistrationFormBean registrationFormBean,
             BindingResult bindingResult) {
-        if (bindingResult.hasErrors() || !userService.checkUser(registrationFormBean.getEmail())) {
+        if (bindingResult.hasErrors() || !userService.checkUser(registrationFormBean.getEmail()) ||
+                !registrationFormBean.getPassword().equals(registrationFormBean.getConfirmPassword())) {
             request.setAttribute("contains", true);
             return "registration/registrationPage";
         }
@@ -53,7 +54,7 @@ public class RegistrationController {
         userService.addUser(registrationFormBean.getName(), registrationFormBean.getEmail(), registrationFormBean.getPassword(), key);
         Mailing mailing = new Mailing();
         User user = userService.getUserByLogin(registrationFormBean.getEmail());
-        mailing.sendMail(registrationFormBean.getEmail(), "Registration", "http://www.localhost:8081/?id=" + user.getId() + "&key=" + key);
+        mailing.sendMail(registrationFormBean.getEmail(), "Registration", "Ваша регистрация прошла успешно! \nПройдите по ссылке: http://www.localhost:8088/?id=" + user.getId() + "&key=" + key);
         request.setAttribute("contains", null);
         return "registration/result";
     }

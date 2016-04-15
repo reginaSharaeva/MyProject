@@ -11,67 +11,65 @@
             </br>
             </br>
             </br>
+            </br>
+
         <div class="register-top-grid">
             <div id="legend">
-                <legend class="">Регистрация</legend>
+                <legend class="">Оформление заказа</legend>
             </div>
         <#--<@form.errors path="*" cssStyle="color: red;" />-->
             <div>
-                <span>Область<label>*</label></span>
+                <span>Область<label>* </label></span>
                 <@form.input path="area"/>
                 <@form.errors path="area" cssStyle="color: red;" />
             </div>
             <div>
-                <span>Город<label>*</label></span>
+                <span>Город<label>* </label></span>
                 <@form.input path="city"/>
                 <@form.errors path="city" cssStyle="color: red;" />
             </div>
             <div>
-                <span>Улица<label>*</label></span>
+                <span>Улица<label>* </label></span>
                 <@form.input path="street"/>
                 <@form.errors path="street" cssStyle="color: red;" />
             </div>
             <div>
-                <span>Дом<label>*</label></span>
+                <span>Дом<label>* </label></span>
                 <@form.input path="house" />
                 <@form.errors path="house" cssStyle="color: red;" />
-                <p class="help-block">Введите пароль (пароль должен содержать не менее 7 символов)</p>
             </div>
             <div>
-                <span>Квартира</span>
+                <span>Квартира </span>
                 <@form.input path="flat" />
                 <@form.errors path="flat" cssStyle="color: red;" />
             </div>
             <div>
-                <span>Индекс</span>
+                <span>Индекс </span>
                 <@form.input path="index" />
                 <@form.errors path="index" cssStyle="color: red;" />
             </div>
+            </br>
             <div>
                 <!-- PayWay -->
                 <span>Способ оплаты</span>
-                <@form.select path ="payWay" style="width: 180px">
+                <@form.select path ="payWay" style="width: 200px">
                     <option value="Наличные">Наличными при доставке</option>
                     <option value="Карта">Картой при заказе</option>
                 </@form.select>
             </div>
-            <div class="control-group">
+            <div>
                 <!--Total amount-->
-                <label class="control-label" for="pay">Итоговая сумма</label>
-                <div class="controls">
-                    <#if totalAmount?has_content>
-                        <input type="text" value="${totalAmount}.00 руб." placeholder="" class="input-xlarge">
-                    </#if>
-                </div>
+                <span>Итоговая сумма </span>
+                <#if totalAmount?has_content>
+                    <input type="text" value="${totalAmount}.00 руб." placeholder="" class="input-xlarge">
+                </#if>
             </div>
-            <div class="control-group">
+            <div>
                 <!--Total count-->
-                <label class="control-label" for="password">Итоговая сумма</label>
-                <div class="controls">
-                    <#if totalAmount?has_content>
-                        <input type="text" value="${totalCount}.00 руб." placeholder="" class="input-xlarge">
-                    </#if>
-                </div>
+                <span>Количество</span>
+                <#if totalAmount?has_content>
+                    <input type="text" value="${totalCount} шт." placeholder="" class="input-xlarge">
+                </#if>
             </div>
             <div class="clearfix"> </div>
             <div class="clearfix"> </div>

@@ -11,7 +11,7 @@
         <span class="span-good">${good.name}</span>
         <span class="span-good">${good.description}</span>
         <span class="span-good">${good.category.id} ${good.category.name}</span>
-        <span class="span-good">${good.price}</span>
+        <span class="span-good">${good.price}.00 руб.</span>
         <#if goodInCart?has_content>
             <a href="/cart"><input type="submit" value="Добавлено" class="add-tocard-catalog"></a>
         <#else>

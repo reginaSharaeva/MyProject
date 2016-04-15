@@ -29,7 +29,7 @@
             <span class="cart-amount">Количество: ${totalCount} шт.</span>
         </#if>
         <@sec.authorize ifAnyGranted="ROLE_ANONYMOUS">
-            <a href="/login?totalAmount=${totalAmount}"><input type="submit" value="Оформить заказ" class="cart-order btn-lg btn-success"></a>
+            <a href="/order?totalAmount=${totalAmount}"><input type="submit" value="Оформить заказ" class="cart-order btn-lg btn-success"></a>
         </@sec.authorize>
     <#-- Если уже авторизован, то ссылки в личный кабинет и на выход -->
         <@sec.authorize access="isAuthenticated()">

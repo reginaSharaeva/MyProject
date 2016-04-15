@@ -1,4 +1,4 @@
-
+<#-- @ftlvariable name="orders" type="java.lang.String" -->
 <#include "templates/main_template.ftl">
 <@mainTemplate title="Мир игрушек" />
 <#macro m_body>
@@ -8,6 +8,10 @@
         </br>
         </br>
         </br>
+        <#if orders?has_content>
+            <span style="color: red">Сначала пройдите авторизацию!</span>
+            </br>
+        </#if>
         <div id="legend">
             <legend class="">Вход</legend>
         </div>
@@ -33,9 +37,6 @@
                 <a href="/reg" style="margin-left: 15px;">Зарегистрироваться</a>
             </form>
             </br>
-            <#if orders?has_content>
-                <a href="/cart">Обратно в корзину</a>
-            </#if>
         </div>
         <div class="col-md-5 left-account "></div>
         <div class="clearfix"> </div>

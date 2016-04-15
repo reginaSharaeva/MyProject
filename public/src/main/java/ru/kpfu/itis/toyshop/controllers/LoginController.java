@@ -26,18 +26,16 @@ import java.util.List;
  * Created by Regina on 24.03.2016.
  */
 @Controller
+@RequestMapping(value = "/login")
 public class LoginController {
 
     @Autowired
     private HttpServletRequest request;
 
     @IncludeMenuList
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String renderLoginPage(Boolean error, @RequestParam(value = "totalAmount", required = false) BigDecimal totalAmount) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String renderLoginPage(Boolean error) {
         request.setAttribute("error", error);
-        if (totalAmount != null) {
-            request.setAttribute("orders", true);
-        }
-        return "login";
+        return "loginPage";
     }
 }

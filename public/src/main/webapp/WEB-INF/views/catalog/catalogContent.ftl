@@ -14,7 +14,7 @@
                     <img src="/resources/images/${goods.image}" class="toy-search">
                 </a>
             </div>
-            <a href="/good/${goods.id}" class="href-catalog">${goods.name!} ${goods.color!} ${goods.price!}</a>
+            <a href="/good/${goods.id}" class="href-catalog">${goods.name!} ${goods.color!} ${goods.price!}.00 руб.</a>
         </form>
         <#if goodInCart?has_content>
             <a href="/cart"><input type="submit" value="Перейти в корзину" class="add-tocard-catalog"></a>

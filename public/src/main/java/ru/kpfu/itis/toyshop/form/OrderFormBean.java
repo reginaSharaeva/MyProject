@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
  * Created by Регина on 06.04.2016.
  */
 public class OrderFormBean {
+    
     @NotEmpty(message = "Поле обязательно для заполнения")
     @Pattern(regexp = "[A-Za-z\\s]", message="Неверный формат")
     private String area;
@@ -21,18 +22,18 @@ public class OrderFormBean {
     @Pattern(regexp = "[A-Za-z\\s]", message="Неверный формат")
     private String street;
 
-    @Size(min=1, max=3, message="Неверный формат")
+    @Size(max=3, message="Неверный формат")
     @NotEmpty(message = "Поле обязательно для заполнения")
-    @Pattern(regexp = "[1-9]", message="Неверный формат")
+    @Pattern(regexp = "[0-9]", message="Неверный формат")
     private int house;
 
-    @Size(min=1, max=3, message="Неверный формат")
-    @Pattern(regexp = "[1-9]", message="Неверный формат")
+    @Size(max=3, message="Неверный формат")
+    @Pattern(regexp = "[0-9]", message="Неверный формат")
     private int flat;
 
-    @Size(min=1, max=6, message="Неверный формат")
+    @Size(max=6, message="Неверный формат")
     @NotEmpty(message = "Поле обязательно для заполнения")
-    @Pattern(regexp = "[1-9]", message="Неверный формат")
+    @Pattern(regexp = "[0-9]", message="Неверный формат")
     private int index;
 
     private String payWay;
