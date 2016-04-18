@@ -97,4 +97,40 @@ public class Order {
     public List<Order_Good> getOrder_goods() {
         return order_goods;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCreate_time(Date create_time) {
+        this.create_time = create_time;
+    }
+
+    public void setTotal_sum(BigDecimal total_sum) {
+        this.total_sum = total_sum;
+    }
+
+    public void setTotal_count(Long total_count) {
+        this.total_count = total_count;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setPay_type(String pay_type) {
+        this.pay_type = pay_type;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
+
+    public void setOrder_goods(List<Order_Good> order_goods) {
+        this.order_goods = order_goods;
+    }
 }

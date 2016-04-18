@@ -66,13 +66,6 @@
                     </a>
                 </@sec.authorize>
                 <li><a href="/cart"> Корзина</a></li>
-
-                <#--<li><a href="/reg"><span class="user"></span> Регистрация</a></li>-->
-                <#--<#if enter?has_content>-->
-                    <#--<li><a href="/login"><span class="log-in"></span> Выход</a></li>-->
-                <#--<#else>-->
-                    <#--<li><a href="/login"><span class="log-in"></span> Вход</a></li>-->
-                <#--</#if>-->
             </ul>
         </div>
     </div>

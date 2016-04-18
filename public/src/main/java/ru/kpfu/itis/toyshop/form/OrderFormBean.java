@@ -11,37 +11,37 @@ import javax.validation.constraints.Size;
 public class OrderFormBean {
     
     @NotEmpty(message = "Поле обязательно для заполнения")
-    @Pattern(regexp = "[A-Za-z\\s]", message="Неверный формат")
+    @Pattern(regexp = "^[а-яА-ЯёЁa-zA-Z]+$", message="Неверный формат")
     private String area;
 
     @NotEmpty(message = "Поле обязательно для заполнения")
-    @Pattern(regexp = "[A-Za-z\\s]", message="Неверный формат")
+    @Pattern(regexp = "^[а-яА-ЯёЁa-zA-Z]+$", message="Неверный формат")
     private String city;
 
     @NotEmpty(message = "Поле обязательно для заполнения")
-    @Pattern(regexp = "[A-Za-z\\s]", message="Неверный формат")
+    @Pattern(regexp = "^[а-яА-ЯёЁa-zA-Z]+$", message="Неверный формат")
     private String street;
 
-    @Size(max=3, message="Неверный формат")
+    @Size(min = 1, max = 3, message = "Неверный формат")
     @NotEmpty(message = "Поле обязательно для заполнения")
-    @Pattern(regexp = "[0-9]", message="Неверный формат")
-    private int house;
+    @Pattern(regexp = "^[0-9]+$", message="Неверный формат")
+    private String house;
 
-    @Size(max=3, message="Неверный формат")
-    @Pattern(regexp = "[0-9]", message="Неверный формат")
-    private int flat;
+    @Size(min = 1, max = 3, message = "Неверный формат")
+    @Pattern(regexp = "^[0-9]+$", message="Неверный формат")
+    private String flat;
 
-    @Size(max=6, message="Неверный формат")
+    @Size(min = 6, max = 6, message="Неверный формат")
     @NotEmpty(message = "Поле обязательно для заполнения")
-    @Pattern(regexp = "[0-9]", message="Неверный формат")
-    private int index;
+    @Pattern(regexp = "^[0-9]+$", message="Неверный формат")
+    private String index;
 
     private String payWay;
 
     public OrderFormBean() {
     }
 
-    public OrderFormBean(String payWay, String area, String city, String street, int house, int flat, int index) {
+    public OrderFormBean(String payWay, String area, String city, String street, String house, String flat, String index) {
         this.area = area;
         this.city = city;
         this.street = street;
@@ -75,27 +75,27 @@ public class OrderFormBean {
         this.street = street;
     }
 
-    public int getHouse() {
+    public String getHouse() {
         return house;
     }
 
-    public void setHouse(int house) {
+    public void setHouse(String house) {
         this.house = house;
     }
 
-    public int getFlat() {
+    public String getFlat() {
         return flat;
     }
 
-    public void setFlat(int flat) {
+    public void setFlat(String flat) {
         this.flat = flat;
     }
 
-    public int getIndex() {
+    public String getIndex() {
         return index;
     }
 
-    public void setIndex(int index) {
+    public void setIndex(String index) {
         this.index = index;
     }
 

@@ -36,6 +36,6 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.GET)
     public String renderLoginPage(Boolean error) {
         request.setAttribute("error", error);
-        return "loginPage";
+        return "login";
     }
 }

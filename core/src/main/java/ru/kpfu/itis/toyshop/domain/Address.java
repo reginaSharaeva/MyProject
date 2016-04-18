@@ -27,7 +27,7 @@ public class Address {
     private int flat;
 
     @Column(name = "index")
-    private int index;
+    private String index;
 
     @Column(name = "area")
     private String area;
@@ -46,7 +46,7 @@ public class Address {
     public Address() {
     }
 
-    public Address(String city, String street, int house, int flat, int index, String area, User users, List<Order> orders) {
+    public Address(String city, String street, int house, int flat, String index, String area, User users, List<Order> orders) {
         this.city = city;
         this.street = street;
         this.house = house;
@@ -57,7 +57,7 @@ public class Address {
         this.orders = orders;
     }
 
-    public Address(String city, String street, int house, int flat, int index, String area, User users) {
+    public Address(String city, String street, int house, int flat, String index, String area, User users) {
         this.city = city;
         this.street = street;
         this.house = house;
@@ -87,7 +87,7 @@ public class Address {
         return flat;
     }
 
-    public int getIndex() {
+    public String getIndex() {
         return index;
     }
 
@@ -101,6 +101,42 @@ public class Address {
 
     public List<Order> getOrders() {
         return orders;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setHouse(int house) {
+        this.house = house;
+    }
+
+    public void setFlat(int flat) {
+        this.flat = flat;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
 

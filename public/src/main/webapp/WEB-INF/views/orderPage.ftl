@@ -44,7 +44,7 @@
                 <@form.errors path="flat" cssStyle="color: red;" />
             </div>
             <div>
-                <span>Индекс </span>
+                <span>Индекс<label>* </label></span>
                 <@form.input path="index" />
                 <@form.errors path="index" cssStyle="color: red;" />
             </div>

@@ -20,9 +20,6 @@ public class User {
     @Column(name = "hash_pass")
     private String hash_pass;
 
-    @Column(name = "avatar")
-    private String avatar;
-
     @Column(name = "name")
     private String name;
 
@@ -53,10 +50,9 @@ public class User {
     public User() {
     }
 
-    public User(String login, String hash_pass, String avatar, String name, boolean check, String key, String role) {
+    public User(String login, String hash_pass, String name, boolean check, String key, String role) {
         this.login = login;
         this.hash_pass = hash_pass;
-        this.avatar = avatar;
         this.name = name;
         this.check = check;
         this.key = key;
@@ -74,10 +70,6 @@ public class User {
 
     public String getHash_pass() {
         return hash_pass;
-    }
-
-    public String getAvatar() {
-        return avatar;
     }
 
     public String getName() {

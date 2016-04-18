@@ -31,15 +31,6 @@ public class CartService {
     private UserRepository userRepository;
 
     /**
-     * Отображение товаров из корзины
-     *
-     * @return
-     */
-    public List<Cart> getAllCarts() {
-        return cartRepository.getAllCarts();
-    }
-
-    /**
      * Добавление товара в корзину
      */
     public List<Cart> addInCart(List<Cart> carts, Long goodId) {
@@ -47,16 +38,16 @@ public class CartService {
         if (carts == null) {
             carts = new ArrayList<>();
         }
-        Cart cart = goodContains(carts, good);
-        if (cart == null) {
-            carts.add(new Cart(1L, good));
-        } else {
-            for (Cart c: carts) {
-                if (c.getGoods().getId().equals(goodId)) {
-                    Long count = c.getCount() + 1;
-                    c.setCount(count);
-                }
+        boolean contains = false;
+        for (Cart cart: carts) {
+            if (cart.getGoods().equals(good)) {
+                Long count = cart.getCount() + 1;
+                cart.setCount(count);
+                contains = true;
             }
+        }
+        if (!contains) {
+            carts.add(new Cart(1L, good));
         }
         return carts;
     }
@@ -99,19 +90,6 @@ public class CartService {
         return totalCount;
     }
 
-    public Cart getCartById(List<Cart> carts, Long cartId) {
-        for (Cart cart: carts) {
-            if (cart.getId().equals(cartId)) {
-                return cart;
-            }
-        }
-        return null;
-    }
-
-    public Cart getCartById(Long cartId) {
-        return cartRepository.getCartById(cartId);
-    }
-
     public Cart getCartByUserAndGood(User user, Long goodId) {
         Good good = goodRepository.getGoodById(goodId);
         return cartRepository.getCartByUserAndGood(good, user);
@@ -128,27 +106,6 @@ public class CartService {
 
     public List<Cart> getCartByUser(User user) {
         return cartRepository.getCartByUser(user);
-    }
-
-    public void deleteCartByCount(String userLogin) {
-        User user = userRepository.getUserByLogin(userLogin);
-        List<Cart> carts = cartRepository.getCartByUser(user);
-        for(Cart cart : carts) {
-            if (cart.getCount() == 0L) {
-                cartRepository.cartRemove(cart);
-            }
-        }
-    }
-
-    public Cart goodContains(List<Cart> carts, Good good) {
-        if (carts != null) {
-            for (Cart cart: carts) {
-                if (cart.getGoods() == good) {
-                    return cart;
-                }
-            }
-        }
-        return null;
     }
 
     public List<Cart> doCountLess(List<Cart> carts, Cart cart) {
@@ -187,24 +144,14 @@ public class CartService {
         }
         return carts;
     }
-    public void goodRemove(Long cartId) {
-        Cart cart = cartRepository.getCartById(cartId);
-        cartRepository.cartRemove(cart);
+
+    public void deleteCart(Cart cart) {
+        cartRepository.deleteCart(cart.getId());
     }
-    
+
     public void goodRemoveByUserAndGood(User user, Long goodId) {
         Cart cart = getCartByUserAndGood(user, goodId);
         cartRepository.cartRemove(cart);
-    }
-
-    public void checkCarts(List<Cart> carts, String login) {
-        User user = userRepository.getUserByLogin(login);
-        for (Cart c: carts) {
-            Cart cart = cartRepository.getCartByUserAndGood(c.getGoods(), user);
-            if (cart == null) {
-                cartRepository.saveCartByCount(c.getGoods(), user, c.getCount());
-            }
-        }
     }
 }
 

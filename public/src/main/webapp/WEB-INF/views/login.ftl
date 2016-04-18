@@ -8,10 +8,6 @@
         </br>
         </br>
         </br>
-        <#if orders?has_content>
-            <span style="color: red">Сначала пройдите авторизацию!</span>
-            </br>
-        </#if>
         <div id="legend">
             <legend class="">Вход</legend>
         </div>

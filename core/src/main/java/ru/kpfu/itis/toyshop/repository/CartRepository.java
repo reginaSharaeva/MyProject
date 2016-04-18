@@ -21,18 +21,8 @@ public class CartRepository {
     private SessionFactory sessionFactory;
 
     @SuppressWarnings("unchecked")
-    public List<Cart> getAllCarts() {
-        return sessionFactory.getCurrentSession().createCriteria(Cart.class).list();
-    }
-
-    @SuppressWarnings("unchecked")
     public Cart getCartByUserAndGood(Good good, User user) {
         return (Cart) sessionFactory.getCurrentSession().createCriteria(Cart.class).add(Restrictions.conjunction().add(Restrictions.eq("users", user)).add(Restrictions.eq("goods", good))).uniqueResult();
-    }
-
-    @SuppressWarnings("unchecked")
-    public Cart getCartById(Long cartId) {
-        return (Cart) sessionFactory.getCurrentSession().createCriteria(Cart.class).add(Restrictions.eq("id", cartId)).uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
@@ -46,16 +36,12 @@ public class CartRepository {
     }
 
     @SuppressWarnings("unchecked")
-    public void saveCartByCount(Good good, User user, Long count) {
-        sessionFactory.getCurrentSession().save(new Cart(good, user, count));
-    }
-
-    @SuppressWarnings("unchecked")
     public void updateCount(Cart cart) {
         sessionFactory.getCurrentSession().createQuery("update Cart c set c.count = :count where c.goods.id = :id")
                 .setLong("count", cart.getCount() + 1)
                 .setLong("id", cart.getGoods().getId()).executeUpdate();
     }
+
 
     @SuppressWarnings("unchecked")
     public void doCountLess(Cart cart) {
@@ -68,5 +54,11 @@ public class CartRepository {
     public void cartRemove(Cart cart) {
         sessionFactory.getCurrentSession().createQuery("delete from Cart c where c.goods.id = :id")
                 .setLong("id", cart.getGoods().getId()).executeUpdate();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void deleteCart(Long id) {
+        sessionFactory.getCurrentSession().createQuery("delete from Cart c where c.id = :id")
+                .setLong("id", id).executeUpdate();
     }
 }

@@ -36,6 +36,9 @@ public class CartController {
     @Autowired
     private HttpSession session;
 
+    @Autowired
+    private HttpServletRequest request;
+
 
     /**
      * Отображение корзины
@@ -49,13 +52,15 @@ public class CartController {
         String login = (String) session.getAttribute("userLogin");
         if (login == null) {
             carts = (List<Cart>) session.getAttribute("allCarts");
+            session.setAttribute("allCarts", carts);
         } else {
             User user = userService.getUserByLogin(login);
             carts = cartService.getCartByUser(user);
+            request.setAttribute("allCarts", carts);
         }
         session.setAttribute("totalAmount", cartService.getTotalAmount(carts));
         session.setAttribute("totalCount", cartService.getTotalCount(carts));
-        session.setAttribute("allCarts", carts);
+
         return "cartPage";
     }
 
@@ -92,6 +97,7 @@ public class CartController {
             if (cart.getCount() >= 1) {
                 carts = cartService.doCountLess(carts, cart);
             }
+            session.setAttribute("allCarts", carts);
         } else {
             User user = userService.getUserByLogin(login);
             carts = cartService.getCartByUser(user);
@@ -104,9 +110,9 @@ public class CartController {
                     }
                 }
             }
-
+            request.setAttribute("allCarts", carts);
         }
-        session.setAttribute("allCarts", carts);
+
         session.setAttribute("totalAmount", cartService.getTotalAmount(carts));
         session.setAttribute("totalCount", cartService.getTotalCount(carts));
         return "cartPage";
@@ -124,6 +130,7 @@ public class CartController {
             if (cart.getCount() < 12) {
                 carts = cartService.doCountMore(carts, cart);
             }
+            session.setAttribute("allCarts", carts);
         } else {
             User user = userService.getUserByLogin(login);
             carts = cartService.getCartByUser(user);
@@ -136,9 +143,8 @@ public class CartController {
                     }
                 }
             }
-
+            request.setAttribute("allCarts", carts);
         }
-        session.setAttribute("allCarts", carts);
         session.setAttribute("totalAmount", cartService.getTotalAmount(carts));
         session.setAttribute("totalCount", cartService.getTotalCount(carts));
         return "cartPage";
@@ -152,14 +158,15 @@ public class CartController {
         if (login == null) {
             carts = (List<Cart>) session.getAttribute("allCarts");
             carts = cartService.goodRemoveByGood(carts, goodId);
+            session.setAttribute("allCarts", carts);
         } else {
             User user = userService.getUserByLogin(login);
             cartService.goodRemoveByUserAndGood(user, goodId);
             carts = cartService.getCartByUser(user);
+            request.setAttribute("allCarts", carts);
         }
         session.setAttribute("totalAmount", cartService.getTotalAmount(carts));
         session.setAttribute("totalCount", cartService.getTotalCount(carts));
-        session.setAttribute("allCarts", carts);
         return "cartPage";
     }
 }

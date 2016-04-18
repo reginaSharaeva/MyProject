@@ -17,10 +17,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Transactional
-    public List<User> getAllUsers() {
-        return userRepository.getAllUsers();
-    }
 
     public void addUser(String name, String mail, String password, String key) {
         HashMake hashMake = new HashMake();

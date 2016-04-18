@@ -55,4 +55,20 @@ public class Order_Good implements Serializable {
     public Long getCount() {
         return count;
     }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public void setOrders(Order orders) {
+        this.orders = orders;
+    }
+
+    public void setGoods(Good goods) {
+        this.goods = goods;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -18,27 +18,15 @@ public class UserRepository {
     private SessionFactory sessionFactory;
 
     @SuppressWarnings("unchecked")
-    public List<User> getAllUsers() {
-        return sessionFactory.getCurrentSession().createCriteria(User.class).list();
-    }
-
-
-    @SuppressWarnings("unchecked")
     public User getUserById(Long userId) {return (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("id", userId)).uniqueResult();}
 
     @SuppressWarnings("unchecked")
     public void addUser(String name, String mail, String hash_pass, String key) {
-        sessionFactory.getCurrentSession().save(new User(mail, hash_pass, null, name, false, key, "ROLE_USER"));
+        sessionFactory.getCurrentSession().save(new User(mail, hash_pass, name, false, key, "ROLE_USER"));
     }
 
     @SuppressWarnings("unchecked")
     public User getUserByLogin(String login) {return (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("login", login)).uniqueResult();}
-
-
-    @SuppressWarnings("unchecked")
-    public User getUserByKey(String key) {
-        return (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("key", key)).uniqueResult();
-    }
 
     @SuppressWarnings("unchecked")
     public void setTrue(Long userId) {
