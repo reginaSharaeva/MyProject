@@ -1,20 +1,16 @@
 package ru.kpfu.itis.toyshop.form;
 
+
 import org.hibernate.validator.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
 /**
- * Created by Regina on 24.03.2016.
+ * Created by Регина on 18.04.2016.
  */
-public class RegistrationFormBean {
+public class ChangeInfoFormBean {
 
     @NotEmpty(message = "Поле обязательно для заполнения")
     private String name;
-
-    @NotEmpty(message = "Поле обязательно для заполнения")
-    @Pattern(regexp="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}",
-            message="Неверный формат email")
-    private String email;
 
     @Size(min=6, max=20, message="Пароль должен быть от 7 до 20 символов")
     private String password;
@@ -22,12 +18,12 @@ public class RegistrationFormBean {
     @Size(min=6, max=20, message="Пароль должен быть от 7 до 20 символов")
     private String confirmPassword;
 
-    public RegistrationFormBean() {
+
+    public ChangeInfoFormBean() {
     }
 
-    public RegistrationFormBean(String name, String email, String password, String confirmPassword) {
+    public ChangeInfoFormBean(String name, String password, String confirmPassword) {
         this.name = name;
-        this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
     }
@@ -38,14 +34,6 @@ public class RegistrationFormBean {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
@@ -66,12 +54,10 @@ public class RegistrationFormBean {
 
     @Override
     public String toString() {
-        return "RegistrationFormBean{" +
+        return "ChangeInfoFormBean{" +
                 "name='" + name + '\'' +
-                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
     }
 }
-

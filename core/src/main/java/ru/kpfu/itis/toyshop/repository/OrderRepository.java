@@ -1,9 +1,13 @@
 package ru.kpfu.itis.toyshop.repository;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.kpfu.itis.toyshop.domain.Order;
+import ru.kpfu.itis.toyshop.domain.User;
+
+import java.util.List;
 
 /**
  * Created by Регина on 08.04.2016.
@@ -18,4 +22,10 @@ public class OrderRepository {
     public void saveOrder(Order order) {
         sessionFactory.getCurrentSession().save(order);
     }
+
+    @SuppressWarnings("unchecked")
+    public List<Order> getOrderByUser(User user) {
+        return sessionFactory.getCurrentSession().createCriteria(Order.class).add(Restrictions.and(Restrictions.eq("users", user)).add(Restrictions.eq("status", "Оформлен"))).list();
+    }
+
 }

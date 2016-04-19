@@ -15,8 +15,6 @@ public class AddressService {
     private AddressRepository addressRepository;
 
     public void addAddress(Address address) {
-        if (addressRepository.getAddress(address) == null) {
-            addressRepository.saveAddress(address);
-        }
+        addressRepository.saveAddress(address);
     }
 }

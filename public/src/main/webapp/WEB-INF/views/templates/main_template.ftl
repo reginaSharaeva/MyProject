@@ -15,6 +15,7 @@
     <link href="/resources/css/style.css" rel="stylesheet">
     <link href="/resources/css/main-page.css" rel="stylesheet">
     <link href="/resources/css/cart.css" rel="stylesheet">
+    <link href="/resources/css/cabinet.css" rel="stylesheet">
 <#list styles as css>
     <link rel="stylesheet" href="/resources/${css}" type="text/css" />
 </#list>
@@ -34,9 +35,7 @@
             <ul class="nav navbar-nav">
                 <li ><a href="/">Мир Игрушек</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="/catalog">Каталог
-                        <span class="caret"></span>
-                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/catalog">Каталог</a>
                     <ul class="dropdown-menu">
                         <#if listMenu?has_content>
                             <#list listMenu as menu>
@@ -48,24 +47,25 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <@sec.authorize ifAnyGranted="ROLE_ANONYMOUS">
-                    <li><a class="login" href="/login">Вход</a>|</li>
+                    <li><a class="login" href="/login">Вход</a></li>
                     <li><a class="login" href="/reg">Регистрация</a></li>
                 </@sec.authorize>
                 <#-- Если уже авторизован, то ссылки в личный кабинет и на выход -->
                 <@sec.authorize access="isAuthenticated()">
-                    <a class="login" href="/cabinet">
-                        <i class="user"> </i>
+
                         <li class="user_desc">
-                        <#-- principal - это фактически экземпляр объекта MyUserDetail -->
-                            <@sec.authentication property="principal.username" />
-                        <#--<@sec.authentication property="principal.userInfo.fio" />-->
+                            <a class="login" href="/cabinet">
+                                <@sec.authentication property="principal.username" />
+                            </a>
                         </li>
-                    </a>
-                    <a class="login" href="/logout">
-                        <li class="user_desc" style="padding-left: 10px;">Выйти</li>
-                    </a>
+
+
+                        <li class="user_desc" style="padding-left: 10px;">
+                            <a class="login" href="/logout">Выйти</a>
+                        </li>
+
                 </@sec.authorize>
-                <li><a href="/cart"> Корзина</a></li>
+                <li><a href="/cart">Корзина</a></li>
             </ul>
         </div>
     </div>

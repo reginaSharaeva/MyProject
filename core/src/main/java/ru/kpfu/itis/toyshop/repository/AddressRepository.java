@@ -20,11 +20,4 @@ public class AddressRepository {
     public void saveAddress(Address address) {
         sessionFactory.getCurrentSession().save(address);
     }
-
-    public Address getAddress(Address address) {
-        return (Address) sessionFactory.getCurrentSession().createCriteria(Address.class).add(Restrictions.and(Restrictions.eq("area", address.getArea())).add(Restrictions.eq("city", address.getCity()))
-                .add(Restrictions.eq("street", address.getStreet())).add(Restrictions.eq("house", address.getHouse()))
-                .add(Restrictions.eq("flat", address.getFlat())).add(Restrictions.eq("index", address.getIndex()))).uniqueResult();
-    }
-
 }
