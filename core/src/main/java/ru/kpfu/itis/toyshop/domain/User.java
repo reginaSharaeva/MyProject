@@ -103,5 +103,41 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setHash_pass(String hash_pass) {
+        this.hash_pass = hash_pass;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public void setAddress(List<Address> address) {
+        this.address = address;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void setCart(List<Cart> cart) {
+        this.cart = cart;
+    }
 }
 

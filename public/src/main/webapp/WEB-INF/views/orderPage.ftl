@@ -59,16 +59,14 @@
             </div>
             <div>
                 <!--Total amount-->
-                <span>Итоговая сумма </span>
                 <#if totalAmount?has_content>
-                    <input type="text" value="${totalAmount}.00 руб." placeholder="" class="input-xlarge">
+                    <span>Итоговая сумма: ${totalAmount}.00 руб.</span>
                 </#if>
             </div>
             <div>
                 <!--Total count-->
-                <span>Количество</span>
                 <#if totalAmount?has_content>
-                    <input type="text" value="${totalCount} шт." placeholder="" class="input-xlarge">
+                    <span>Количество: ${totalCount} шт.</span>
                 </#if>
             </div>
             <div class="clearfix"> </div>

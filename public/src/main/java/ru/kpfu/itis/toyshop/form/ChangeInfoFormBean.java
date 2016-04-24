@@ -12,10 +12,8 @@ public class ChangeInfoFormBean {
     @NotEmpty(message = "Поле обязательно для заполнения")
     private String name;
 
-    @Size(min=6, max=20, message="Пароль должен быть от 7 до 20 символов")
     private String password;
 
-    @Size(min=6, max=20, message="Пароль должен быть от 7 до 20 символов")
     private String confirmPassword;
 
 

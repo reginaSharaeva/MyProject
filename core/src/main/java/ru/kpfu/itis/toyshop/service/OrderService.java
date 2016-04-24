@@ -24,4 +24,13 @@ public class OrderService {
     public List<Order> getOrderByUser(User user) {
         return orderRepository.getOrderByUser(user);
     }
+
+    public void updateOrder(Order order) {
+        order.setStatus("Отменен");
+        orderRepository.updateOrder(order);
+    }
+
+    public Order getOrderById(Long id) {
+        return orderRepository.getOrderById(id);
+    }
 }

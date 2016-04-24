@@ -1,7 +1,7 @@
 <#-- @ftlvariable name="good" type="ru.kpfu.itis.toyshop.domain.Good" -->
 <#-- @ftlvariable name="goodInCart" type="boolean" -->
 <#include "templates/main_template.ftl">
-<@mainTemplate />
+<@mainTemplate scripts=["js/my/catalog.js"] />
 <#macro m_body>
 <body>
 <h1 class="starter-template">Описание товара</h1>

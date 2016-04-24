@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html >
-  
-<head>
-    
-<meta charset="UTF-8">
-    
-<title>Responsive Infinite Carousel</title>
-    
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<#--<!DOCTYPE html>-->
+<#--<html >-->
+  <#---->
+<#--<head>-->
+    <#---->
+<#--<meta charset="UTF-8">-->
+    <#---->
+<#--<title>Responsive Infinite Carousel</title>-->
+    <#---->
+<#--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />-->
 
-<script type="text/javascript" src="//use.typekit.net/kei2cfp.js"></script>
+<#--<script type="text/javascript" src="//use.typekit.net/kei2cfp.js"></script>-->
 
-<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-    
-    
+<#--<script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+    <#---->
+    <#---->
     
         
 <style>
@@ -27,7 +27,6 @@
 
 body, html {
   font-family: "europa-1","europa-2", sans-serif;
-  overflow: hidden;
 }
 
 .wrapper {
@@ -43,7 +42,7 @@ body, html {
  * So you can show the items outside the wrapper
  */
 .wrapper--demo {
-  overflow: visible;
+  overflow: hidden;
 }
 .wrapper--demo:after, .wrapper--demo:before {
   content: "";
@@ -130,13 +129,13 @@ body, html {
 
     </style>
 
-    
-        <script src="/resources/js/prefixfree.min.js"></script>
+    <#---->
+        <#--<script src="/resources/js/prefixfree.min.js"></script>-->
 
-    
-  </head>
+    <#---->
+  <#--</head>-->
 
-  <body>
+  <#--<body>-->
 
     <div class="wrapper wrapper--demo">
 	<div class="carousel">
@@ -167,5 +166,5 @@ body, html {
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js'></script>
     <script src="/resources/js/index.js"></script>
-  </body>
-</html>
+  <#--</body>-->
+<#--</html>-->

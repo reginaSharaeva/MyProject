@@ -3,4 +3,5 @@
 <#macro m_body>
     <#include "templates/header.ftl"/>
 <#include "carousel/index.ftl"/>
+
 </#macro>
