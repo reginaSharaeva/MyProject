@@ -6,8 +6,8 @@
 <div id="main">
 <div class="cabinet-title">
     <span>Личный кабинет</span>
+    <a href="/cabinet/change"><input class="btn btn-sm btn-primary" type="submit" value="Настройки"></a>
 </div>
-    <a href="/cabinet/change"><input type="submit" value="Настройки"></a>
     <span class="cabinet-user">Пользователь: ${currentUser.name}</span>
     <span class="cabinet-order">Заказы</span>
     <#if orderGoods?has_content>
